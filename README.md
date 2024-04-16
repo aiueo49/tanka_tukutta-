@@ -73,4 +73,4 @@ AIが自動で短歌を考えてくれるので、文章構成を考える時間
 | フロントエンド                      | Hotwire                  | 
 | CSSフレームワーク                   | Tailwind / daisyUI       | 
 | インフラ：データベース              | PostgreSQL               | 
-| インフラ：Webアプリケーションサーバ | Heroku                   | 
+| インフラ：Webアプリケーションサーバ | Render                   | 
