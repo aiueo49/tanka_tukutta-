@@ -78,3 +78,6 @@ AIが自動で短歌を考えてくれるので、文章構成を考える時間
 ## ■ 画面遷移図
 https://www.figma.com/file/T6Q9RbeJEnBlkg5B18AEyi/%E7%84%A1%E9%A1%8C?type=design&node-id=0-1&mode=design&t=XbD50KSaJMczNJAO-0
 
+## ■ ER図
+https://gyazo.com/679d435a69d02238ea4c77a936ba0d7d
+
