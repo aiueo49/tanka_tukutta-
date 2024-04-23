@@ -1,0 +1,20 @@
+<h1 class="text-2xl font-bold mb-4">ログイン画面</h1>
+
+<div class="">
+  <%= form_with url: login_path, method: :post do |f| %>
+    <div class="mb-4">
+      <%= f.label :email, 'メールアドレス', class: "block text-gray-700 font-bold mb-2" %>
+      <%= f.email_field :email, class: "form-input mt-1 block w-full" %>
+    </div>
+
+    <div class="mb-4">
+      <%= f.label :password, 'パスワード', class: "block text-gray-700 font-bold mb-2" %>
+      <%= f.password_field :password, class: "form-input mt-1 block w-full" %>
+    </div>
+
+    <div class="flex items-center justify-between">
+      <%= f.submit 'ログイン', class: "bg-pink-500 hover:bg-pink-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+      <%= link_to '戻る', root_path, class: "inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" %>
+    </div>
+  <% end %>
+</div>
