@@ -1,1 +1,17 @@
-ログイン画面の前に表示するページ
+<div class="flex justify-center">
+  <div class="mx-2">
+    <p>ログイン画面の前に表示するページ</p>
+  </div>
+
+  <div class="mx-2">
+    <%= link_to "ゲストユーザーとしてログイン", '#', class: "block bg-sky-400 hover:bg-sky-600 text-white font-bold py-2 px-4 rounded text-center" %>
+    <p class="text-center text-sm mt-2">・読み手の名前欄が、"詠み人知らず"となります。</p>
+    <p class="text-center text-sm mt-2">・短歌の削除ができません。</p>
+  </div>
+  
+  <div class="mx-2">
+    <%= link_to "会員登録してログイン", new_user_path, class: "block bg-pink-400 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded text-center" %>
+    <p class="text-center text-sm mt-2">・詠み手の名前欄が、固有の名前になります。</p>
+    <p class="text-center text-sm mt-2">・短歌の削除ができます。</p>
+  </div>
+</div>
