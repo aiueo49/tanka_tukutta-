@@ -1,32 +1,31 @@
-<h1>新規会員登録</h1>
+<h1 class="text-2xl font-bold mb-4">新規会員登録</h1>
 
-<% form_with model: @user do |f| %>
-  <div>
-    <%= f.label :name, '名前' %>
-    <%= f.text_field :name %>
-  </div>
+<div class="">
+  <%= form_with model: @user do |f| %>
+    <div class="mb-4">
+      <%= f.label :name, '名前', class: "block text-gray-700 font-bold mb-2" %>
+      <%= f.text_field :name, class: "form-input mt-1 block w-full" %>
+    </div>
+ 
+    <div class="mb-4">
+      <%= f.label :email, 'メールアドレス', class: "block text-gray-700 font-bold mb-2" %>
+      <%= f.email_field :email, class: "form-input mt-1 block w-full" %>
+    </div>
 
-  <div>
-    <%= f.label :email, 'メールアドレス' %>
-    <%= f.email_field :email %>
-  </div>
+    <div class="mb-4">
+      <%= f.label :password, 'パスワード', class: "block text-gray-700 font-bold mb-2" %>
+      <%= f.password_field :password, class: "form-input mt-1 block w-full" %>
+    </div>
 
-  <div>
-    <%= f.label :password, 'パスワード' %>
-    <%= f.password_field :password %>
-  </div>
+    <div class="mb-4">
+      <%= f.label :password_confirmation, 'パスワード（確認用）', class: "block text-gray-700 font-bold mb-2" %>
+      <%= f.password_field :password_confirmation, class: "form-input mt-1 block w-full" %>
+    </div>
 
-  <div>
-    <%= f.label :password_confirmation, 'パスワード（確認用）' %>
-    <%= f.password_field :password_confirmation %>
-  </div>
-
-  <div>
-    <%= f.submit '登録' %>
-  </div>
-<% end %>
-
-<div>
-  <%= link_to '戻る', root_path %>
+    <div class="flex items-center justify-between">
+      <%= f.submit '登録', class: "bg-pink-500 hover:bg-pink-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+      <%= link_to '戻る', root_path, class: "inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" %>
+    </div>
+  <% end %>
 </div>
 
