@@ -14,4 +14,9 @@ class UserSessionsController < ApplicationController
     logout
     redirect_to root_path, notice: 'ログアウトしました'
   end
+
+  private
+
+  def first_login_page
+  end
 end
