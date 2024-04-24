@@ -13,4 +13,5 @@ Rails.application.routes.draw do
   post 'login' => 'user_sessions#create'
   delete 'logout' => 'user_sessions#destroy', as: :logout
   get 'first_login_page' => 'user_sessions#first_login_page', as: :first_login_page
+  post '/guest_login' => 'user_sessions#guest_login', as: :guest_login
 end
