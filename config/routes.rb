@@ -14,4 +14,8 @@ Rails.application.routes.draw do
   delete 'logout' => 'user_sessions#destroy', as: :logout
   get 'first_login_page' => 'user_sessions#first_login_page', as: :first_login_page
   post '/guest_login' => 'user_sessions#guest_login', as: :guest_login
+  resources :posts, only: %i[new] do
+    post 'generate_tanka', on: :collection
+    get 'generate_tanka', on: :collection
+  end
 end

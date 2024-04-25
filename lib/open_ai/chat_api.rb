@@ -1,6 +1,5 @@
 class OpenAi::ChatApi
   def initialize(prompt)
-    # @api_key = Settings.open_ai.api_key
     @api_key = ENV["OPEN_AI_API_KEY"]
     @base_url = "https://api.openai.com/v1/chat/completions"
     @histories = []
