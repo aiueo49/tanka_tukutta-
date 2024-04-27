@@ -1,2 +1,8 @@
-<h1>返答</h1>
-<p><%= @tanka %></p>
+<div class="flex flex-col">
+  <% @tankas.each_with_index do |tanka, index| %>
+    <div class="mb-4">
+      <input type="radio" id="tanka<%= index %>" name="selected_tanka" value="<%= tanka %>">
+      <label for="tanka<%= index %>"><%= tanka %></label>
+    </div>
+  <% end %>
+</div>

@@ -48,8 +48,10 @@ class PostsController < ApplicationController
     prompt = "#{user_input} + #{predefind_response}"
 
     chat_api = OpenAi::ChatApi.new(prompt)
-    @tanka = chat_api.chat(user_input)
+    tanka_response = chat_api.chat(user_input)
     
+    @tankas = tanka_response.split("\n").reject(&:empty?)
+
     render 'generate_tanka'
   end
 end
