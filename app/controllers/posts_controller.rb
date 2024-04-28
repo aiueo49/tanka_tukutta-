@@ -60,6 +60,8 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
+    # 現在のユーザーを@postの作成者として設定する
+    @post.user = current_user
 
     if @post.save
       redirect_to @post, notice: 'Post was successfully created.'
