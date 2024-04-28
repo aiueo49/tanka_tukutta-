@@ -18,4 +18,5 @@ Rails.application.routes.draw do
     post 'generate_tanka', on: :collection
     get 'generate_tanka', on: :collection
   end
+  resources :posts
 end

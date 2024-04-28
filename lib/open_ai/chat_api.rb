@@ -37,7 +37,10 @@ class OpenAi::ChatApi
       req.body = payload.to_json
     end
 
-    message = response.body["choices"][0]["message"]
+    # レスポンスを保持しておくためにインスタンス変数に格納
+    @response_body = response.body
+
+    message = @response_body["choices"][0]["message"]
     @histories.push(message)
     message["content"]
   end
