@@ -1,2 +1,4 @@
 post#show
 <%= @post.content %>
+<%= link_to 'トップページへ戻る', root_path, class: "inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" %>
+<%= link_to "Share on Twitter", "https://twitter.com/intent/tweet?text=#{CGI.escape(@post.content)}", target: "_blank" %>
