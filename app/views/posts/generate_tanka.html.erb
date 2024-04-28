@@ -1,8 +1,8 @@
-<%= form_with model: Post.new, local: true do |f| %>
+<%= form_with model: @post, url: posts_path, method: :post, data: { turbo: false } do |f| %>
   <div class="flex flex-col">
-    <% @tankas.each_with_index do |tanka, index| %>
+    <% session[:tankas].each_with_index do |tanka, index| %>
       <div class="mb-4">
-        <%= f.radio_button :content, tanka, id: "tanka#{index}" %>
+        <%= f.radio_button :content, tanka, id: "tanka#{index}", name: "post[content]" %>
         <%= f.label "tanka#{index}", tanka %>
       </div>
     <% end %>

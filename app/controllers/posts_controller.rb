@@ -52,6 +52,9 @@ class PostsController < ApplicationController
     
     @tankas = tanka_response.split("\n").reject(&:empty?)
 
+    # セッションに保存
+    session[:tankas] = @tankas
+
     render 'generate_tanka'
   end
 
