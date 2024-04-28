@@ -1,5 +1,9 @@
-<div style="writing-mode: vertical-rl; text-orientation: upright;">
-  <%= @post.content %>
+<div class="flex flex-col items-center justify-center mx-auto">
+  <div class="mb-6", style="writing-mode: vertical-rl; text-orientation: upright;">
+    <%= @post.content %>
+  </div>
+  <div class="flex flex-col">
+    <%= link_to "Share on X", "https://twitter.com/intent/tweet?text=#{CGI.escape(@post.content)}", class: "bg-pink-400 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded mb-4 text-center", target: "_blank" %>
+    <%= link_to 'トップページへ戻る', root_path, class: "bg-sky-400 hover:bg-sky-600 text-white font-bold py-2 px-4 rounded text-center" %>
+  </div>
 </div>
-<%= link_to 'トップページへ戻る', root_path, class: "inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" %>
-<%= link_to "Share on Twitter", "https://twitter.com/intent/tweet?text=#{CGI.escape(@post.content)}", target: "_blank" %>
