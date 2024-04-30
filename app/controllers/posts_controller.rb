@@ -1,6 +1,10 @@
 class PostsController < ApplicationController
   before_action :require_login, only: [:new, :generate_tanka]
 
+  def index
+    @posts = Post.all
+  end
+
   def new
   end
 
