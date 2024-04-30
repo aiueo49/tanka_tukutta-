@@ -38,11 +38,11 @@ class PostsController < ApplicationController
     ## input
     user_input: ケーキが食べたいなあ
     ## output
-    1. 甘美なる 願いはケーキに 満たされぬ 舌を待ちわび 甘美の味を
-    2. 求めしは 甘き果実の 心地に 空腹を癒し 舌鼓う時を
-    3. 焼きたての 甘き蜜漬けの ケーキの 香りに誘われ 口舌乾かす
-    4. 忘れがたき 甘きケーキの 味に酔い 舌鼓う日まで 待ちわびつつ
-    5. 糖蜜に満つ 幸せの一刻 求めては 飢えたる魂が 舌を休めん
+    甘美なる 願いはケーキに 満たされぬ 舌を待ちわび 甘美の味を
+    求めしは 甘き果実の 心地に 空腹を癒し 舌鼓う時を
+    焼きたての 甘き蜜漬けの ケーキの 香りに誘われ 口舌乾かす
+    忘れがたき 甘きケーキの 味に酔い 舌鼓う日まで 待ちわびつつ
+    糖蜜に満つ 幸せの一刻 求めては 飢えたる魂が 舌を休めん
     "
 
     prompt = "#{user_input} + #{predefind_response}"
@@ -60,13 +60,15 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
+    # 現在のユーザーを@postの作成者として設定する
+    @post.user = current_user
 
     if @post.save
       redirect_to @post, notice: 'Post was successfully created.'
     else
       render 'new'
     end
-  end  
+  end
 
   def show
     @post = Post.find(params[:id])
