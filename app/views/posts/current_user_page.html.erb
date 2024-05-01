@@ -1,3 +1,5 @@
-<h1>My Posts</h1>
-
-<%= render @current_user_posts %>
+<% if @current_user_posts.blank? %>
+  <p>まだ投稿がありません。</p>
+<% else %>
+  <%= render @current_user_posts %>
+<% end %>
