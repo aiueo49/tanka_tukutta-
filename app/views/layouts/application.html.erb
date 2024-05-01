@@ -16,8 +16,14 @@
   <body class="bg-pink-50">
 
     <div class="fixed left-0 top-1/2 transform -translate-y-1/2 bg-transparent p-5 flex flex-col space-y-4">
-      <%= link_to posts_path do %>
-        <i class="fa-solid fa-users fa-lg hover:text-blue-500"></i>
+      <% if current_page?(posts_path) %>
+        <%= link_to root_path do %>
+          <i class="fa-solid fa-house fa-lg hover:text-blue-500"></i>
+        <% end %>
+      <% else %>
+        <%= link_to posts_path do %>
+          <i class="fa-solid fa-users fa-lg hover:text-blue-500"></i>
+        <% end %>
       <% end %>
       <% if logged_in? %>
         <%= link_to logout_path, data: { turbo_method: :delete } do %>
