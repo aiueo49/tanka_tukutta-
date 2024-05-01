@@ -5,6 +5,10 @@ class PostsController < ApplicationController
     @posts = Post.all
   end
 
+  def current_user_page
+    @current_user_posts = current_user.posts
+  end
+
   def new
   end
 
