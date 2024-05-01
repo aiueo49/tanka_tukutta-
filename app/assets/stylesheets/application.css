@@ -13,3 +13,86 @@
  *= require_tree .
  *= require_self
  */
+
+/* 短歌をホバーした時の回転 */
+.wrapper {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.card {
+  position: relative;
+  cursor: pointer;
+  width: 30%;
+  height: 330px;
+  padding: 1rem;
+  box-sizing: border-box;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  text-align: center;
+  transition: 0.5s;
+  box-shadow: 0 0 10px #555;
+}
+
+.card-front {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: brightness(80%);
+  transform: rotateY(0deg);
+}
+
+.card-back {
+  padding: 2rem 1rem;
+  color: white;
+  box-sizing: border-box;
+  transform: rotateY(180deg);
+  background-color: #353535;
+}
+
+
+.card:hover .card-front {
+  transform: rotateY(-180deg);
+}
+
+.card:hover .card-back {
+  transform: rotateY(0deg);
+}
+
+
+.card-title {
+  padding: 0.5rem 1rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.card-description {
+  margin: 1rem 0 4rem;
+  line-height: 1.5;
+}
+
+.card-link {
+  padding: 1rem;
+  color: #fff;
+  text-decoration: none;
+  border: 2px solid #fff;
+  transition: all .5s;
+}
+
+.card-link:hover {
+  background-color: #fff;
+  color: #333;
+}
