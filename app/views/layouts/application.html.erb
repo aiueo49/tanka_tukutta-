@@ -26,6 +26,9 @@
         <% end %>
       <% end %>
       <% if logged_in? %>
+        <%= link_to current_user_page_posts_path do %>
+          <i class="fa-solid fa-user fa-lg hover:text-blue-500"></i>
+        <% end %>
         <%= link_to logout_path, data: { turbo_method: :delete } do %>
           <i class="fa-solid fa-arrow-right-from-bracket fa-lg hover:text-blue-500"></i>
         <% end %>
