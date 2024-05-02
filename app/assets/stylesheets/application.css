@@ -76,7 +76,7 @@
 .card-title {
   padding: 0.5rem 1rem;
   font-size: 1.5rem;
-  font-weight: bold;
+  /* font-weight: bold; */
 }
 
 .card-description {

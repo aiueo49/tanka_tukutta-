@@ -1,10 +1,12 @@
-<div class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl m-3 mb-4">
-  <div class="flex items-center justify-center">
-    <div class="p-8">
-      <p class="block mt-1 text-lg leading-tight font-medium text-black" style="writing-mode: vertical-rl;"><%= post.content %></p>
-      <% if post.user %>
-        <p class="mt-2 text-gray-500" style="writing-mode: vertical-rl;"><%= post.user.name %></p>
-      <% end %>
+<div class="wrapper max-w-md mx-auto">
+  <div class="card">
+    <div class="card-front flex items-center justify-center" style="writing-mode: vertical-rl;"><%= post.content %></div>
+    <div class="card-back">
+      <div class="card-description" style="writing-mode: vertical-rl;">
+        <p>テキストが入ります。テキストが入ります。テキストが入ります。</p>
+      </div>
+        <a href="#" class="card-link">詳細</a>
+      </div>
     </div>
   </div>
 </div>
