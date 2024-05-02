@@ -8,6 +8,9 @@
         <%= post.title %>
       </div>
         <a href="#" class="card-link">詳細</a>
+        <% if current_user == post.user %>
+          <%= link_to '削除', post_path(post), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' } %>
+        <% end %>
       </div>
     </div>
   </div>
