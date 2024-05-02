@@ -87,6 +87,12 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
 
+  def destroy
+    post = current_user.posts.find(params[:id])
+    post.destroy!
+    redirect_to posts_path, notice: '短歌を削除しました。', status: :see_other
+  end
+
   private
 
   def post_params
