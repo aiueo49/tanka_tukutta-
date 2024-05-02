@@ -1,9 +1,11 @@
 <div class="wrapper max-w-md mx-auto">
   <div class="card">
-    <div class="card-front flex items-center justify-center" style="writing-mode: vertical-rl;"><%= post.content %></div>
+    <div class="card-front flex items-center justify-center" style="writing-mode: vertical-rl;">
+      <%= post.content %>
+    </div>
     <div class="card-back">
       <div class="card-description" style="writing-mode: vertical-rl;">
-        <p>テキストが入ります。テキストが入ります。テキストが入ります。</p>
+        <%= post.title %>
       </div>
         <a href="#" class="card-link">詳細</a>
       </div>
