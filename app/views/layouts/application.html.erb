@@ -35,7 +35,7 @@
       <% end %>
     </div>
 
-    <main class="container mx-auto mt-28 px-5 flex">
+    <main class="<%= 'container mx-auto mt-28 px-5 flex' unless controller_name == 'posts' && action_name == 'index' %>">
       <%= render "layouts/flash_messages" %>
       <%= yield %>
     </main>

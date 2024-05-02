@@ -61,6 +61,7 @@ class PostsController < ApplicationController
     @tankas = tanka_response.split("\n").reject(&:empty?)
 
     # セッションに保存
+    session[:title] = user_input
     session[:tankas] = @tankas
 
     render 'generate_tanka'
@@ -68,10 +69,14 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
+    # セッションからuser_inputを取得
+    @post.title = session[:title]
     # 現在のユーザーを@postの作成者として設定する
     @post.user = current_user
 
     if @post.save
+      # セッションからuser_inputを削除
+      session.delete(:title)
       redirect_to @post, notice: 'Post was successfully created.'
     else
       render 'new'
@@ -85,6 +90,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:content)
+    params.require(:post).permit(:content, :title)
   end
 end
