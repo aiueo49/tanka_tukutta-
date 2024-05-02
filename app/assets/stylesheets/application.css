@@ -96,3 +96,40 @@
   background-color: #fff;
   color: #333;
 }
+
+.icon-container {
+  position: relative;
+  display: inline-block;
+}
+
+.icon-label {
+  position: absolute;
+  left: 100%;
+  bottom: 50%;
+  transform: translateY(50%);
+  visibility: hidden;
+  opacity: 0;
+  background-color: #555;
+  color: white;
+  text-align: center;
+  padding: 5px 10px;
+  border-radius: 6px;
+  transition: visibility 0s, opacity 0.5s linear;
+  white-space: nowrap;
+}
+
+.icon-label::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent #555 transparent transparent;
+}
+
+.icon-container:hover .icon-label {
+  visibility: visible;
+  opacity: 1;
+}
