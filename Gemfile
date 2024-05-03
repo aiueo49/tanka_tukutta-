@@ -74,3 +74,5 @@ gem "sorcery", "~> 0.17.0"
 gem "faraday", "~> 2.9"
 
 gem "dotenv-rails", "~> 3.1"
+
+gem "ransack", "~> 4.1"
