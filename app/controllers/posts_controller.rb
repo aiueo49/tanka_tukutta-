@@ -2,7 +2,9 @@ class PostsController < ApplicationController
   before_action :require_login, only: [:new, :generate_tanka]
 
   def index
-    @posts = Post.all
+    # @posts = Post.all
+    @q = Post.ransack(params[:q])
+    @posts = @q.result(distinct: true).includes(:user).order("created_at desc")
   end
 
   def current_user_page
