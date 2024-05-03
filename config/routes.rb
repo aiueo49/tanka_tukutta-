@@ -20,4 +20,5 @@ Rails.application.routes.draw do
     get 'current_user_page', on: :collection
   end
   resources :posts
+  get 'terms', to: 'pages#terms'
 end
