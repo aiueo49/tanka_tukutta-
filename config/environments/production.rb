@@ -5,6 +5,7 @@ Rails.application.configure do
 
   # Domain
   config.hosts << "tanka-tukutta.onrender.com"
+  config.hosts << "www.tankatukutta.com"
 
   # Code is not reloaded between requests.
   config.enable_reloading = false
