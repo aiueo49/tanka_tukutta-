@@ -79,7 +79,7 @@ class PostsController < ApplicationController
     if @post.save
       # セッションからuser_inputを削除
       session.delete(:title)
-      redirect_to @post, notice: 'Post was successfully created.'
+      redirect_to @post, notice: '短歌を投稿しました。'
     else
       render 'new'
     end
