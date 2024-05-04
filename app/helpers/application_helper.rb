@@ -2,10 +2,10 @@ module ApplicationHelper
   # フラッシュメッセージの背景色を動的に変更する
   def flash_background_color(type)
     case type.to_sym
-    when :notice then "bg-green-500"
-    when :alert then "bg-red-500"
-    when :error then "bg-yellow-500"
-    else "bg-gray-500"
+    when :notice then "bg-green-300"
+    when :alert then "bg-red-300"
+    when :error then "bg-yellow-300"
+    else "bg-gray-300"
     end
   end
 
