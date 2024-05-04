@@ -21,4 +21,5 @@ Rails.application.routes.draw do
   end
   resources :posts
   get 'terms', to: 'pages#terms'
+  get 'privacy', to: 'pages#privacy'
 end
