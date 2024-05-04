@@ -4,7 +4,7 @@ Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Domain
-  config.hosts << 'www.tankatukutta.com'
+  config.hosts << "tanka-tukutta.onrender.com"
 
   # Code is not reloaded between requests.
   config.enable_reloading = false
