@@ -4,8 +4,11 @@
 <div class="grid grid-cols-6 gap-4 place-items-center">
   <% @posts.each do |post| %>
     <div class="card flex flex-col items-center justify-center">
-      <div class="card-front flex items-center justify-center h-full" style="writing-mode: vertical-rl;">
-        <div class="flex items-center justify-center"><%= post.content %></div>
+      <div class="card-front flex flex-col items-center justify-center h-full" style="writing-mode: vertical-rl;">
+        <div class="flex items-center justify-center mb-4"><%= post.content %></div>
+        <% if post.user %>
+          <div class="flex items-center justify-center text-gray-500 mt-56"><%= post.user.name %></div>
+        <% end %>
       </div>
       <div class="card-back flex flex-col justify-between bg-gray-200 p-4">
         <div class="card-description flex items-center justify-center" style="writing-mode: vertical-rl;">
