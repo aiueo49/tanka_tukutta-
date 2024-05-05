@@ -1,4 +1,4 @@
-<%= search_form_for @q, url: url do |f| %>
-  <%= f.search_field :title_or_content_cont, placeholder: 'Search' %>
-  <%= f.submit '検索' %>
+<%= search_form_for @q, url: url, html: { class: "flex justify-center items-center bg-white rounded-full shadow-md" } do |f| %>
+  <%= f.search_field :title_or_content_cont, placeholder: 'Search', class: "w-full px-6 py-2 leading-tight text-gray-700 rounded-l-full focus:outline-none" %>
+  <%= f.submit '検索', class: "px-6 py-2 text-gray bg-sky-300 rounded-r-full hover:bg-blue-600 focus:outline-none" %>
 <% end %>
