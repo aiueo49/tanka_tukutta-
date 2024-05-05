@@ -1,16 +1,23 @@
 <% if @current_user_posts.blank? %>
   <p>まだ投稿がありません。</p>
 <% else %>
-  <% @current_user_posts.each do |post| %>
-    <div class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl m-3 mb-4">
-      <div class="flex items-center justify-center">
-        <div class="p-8">
-          <p class="block mt-1 text-lg leading-tight font-medium text-black" style="writing-mode: vertical-rl;"><%= post.content %></p>
+  <div class="grid grid-cols-6 gap-4 place-items-center">
+    <% @current_user_posts.each do |post| %>
+      <div class="card flex flex-col items-center justify-center">
+        <div class="card-front flex items-center justify-center h-full" style="writing-mode: vertical-rl;">
+          <div class="flex items-center justify-center"><%= post.content %></div>
+        </div>
+        <div class="card-back flex flex-col justify-between bg-gray-200 p-4">
           <% if post.user %>
-            <p class="mt-2 text-gray-500" style="writing-mode: vertical-rl;"><%= post.user.name %></p>
+            <div class="card-description flex items-center justify-center" style="writing-mode: vertical-rl;">
+              <%= post.user.name %>
+            </div>
           <% end %>
+          <div class="flex items-center justify-center">
+            <%= link_to '削除', post_path(post), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, class: "text-red-500 hover:text-red-700" %>
+          </div>
         </div>
       </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 <% end %>
