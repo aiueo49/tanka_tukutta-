@@ -1,2 +1,23 @@
-<%= render 'search', q: @q, url: posts_path %>
-<%= render @posts %>
+<div class="flex justify-center mb-4 sticky top-0 z-50">
+  <%= render 'search', q: @q, url: posts_path %>
+</div>
+<div class="grid grid-cols-6 gap-4 place-items-center">
+  <% @posts.each do |post| %>
+    <div class="card flex flex-col items-center justify-center">
+      <div class="card-front flex items-center justify-center h-full" style="writing-mode: vertical-rl;">
+        <div class="flex items-center justify-center"><%= post.content %></div>
+      </div>
+      <div class="card-back flex flex-col justify-between bg-gray-200 p-4">
+        <div class="card-description flex items-center justify-center" style="writing-mode: vertical-rl;">
+          <%= post.title %>
+        </div>
+        <div class="flex items-center justify-center">
+          <%= link_to "Share on X", "https://twitter.com/intent/tweet?text=#{CGI.escape(post.content)}", class: "bg-pink-400 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded mb-4 text-center", target: "_blank" %>
+          <% if current_user == post.user %>
+            <%= link_to '削除', post_path(post), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, class: "text-red-500 hover:text-red-700" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
