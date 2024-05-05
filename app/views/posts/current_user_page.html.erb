@@ -1,5 +1,16 @@
 <% if @current_user_posts.blank? %>
   <p>まだ投稿がありません。</p>
 <% else %>
-  <%= render @current_user_posts %>
+  <% @current_user_posts.each do |post| %>
+    <div class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl m-3 mb-4">
+      <div class="flex items-center justify-center">
+        <div class="p-8">
+          <p class="block mt-1 text-lg leading-tight font-medium text-black" style="writing-mode: vertical-rl;"><%= post.content %></p>
+          <% if post.user %>
+            <p class="mt-2 text-gray-500" style="writing-mode: vertical-rl;"><%= post.user.name %></p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
 <% end %>
