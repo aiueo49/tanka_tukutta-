@@ -8,7 +8,7 @@ class PostsController < ApplicationController
   end
 
   def search
-    @posts = Post.where("title like ?", "%#{params[:q]}%")
+    @posts = Post.where("title like ? or content like ?", "%#{params[:q]}%", "%#{params[:q]}%")
     respond_to do |format|
       format.js
     end
