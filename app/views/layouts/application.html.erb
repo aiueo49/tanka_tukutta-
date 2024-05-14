@@ -16,6 +16,37 @@
 
   <body class="bg-pink-50 flex flex-col min-h-screen">
 
+  <header>
+    <nav class="bg-pink-500 text-white p-4">
+      <div class="container mx-auto flex justify-between items-center">
+        <div class="flex justify-center items-center">
+          <%= link_to root_path, class: "flex justify-center items-center text-2xl font-bold" do %>
+            <%= image_tag "favicon.ico", alt: "main_logo", class: "header-logo", width: "30", height: "30" %>
+            <span>短歌つくったー。</span>
+          <% end %>
+            <p>ユーザーの入力をもとに、AIが短歌を自動で生成してくれるサービスです。</p>
+        </div>
+        <div>
+          <% if logged_in? %>
+            <%= link_to current_user_page_posts_path, class: "mr-5" do %>
+              マイページ
+            <% end %>
+            <%= link_to logout_path, data: { turbo_method: :delete } do %>
+              ログアウト
+            <% end %>
+          <% else %>
+            <%= link_to login_path, class: "mr-5" do %>
+              ログイン
+            <% end %>
+            <%= link_to new_user_path do %>
+              新規登録
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </nav> 
+  </header>
+
     <div class="fixed left-0 top-1/2 transform -translate-y-1/2 bg-transparent p-5 flex flex-col space-y-4">
       <% if current_page?(posts_path) %>
         <%= link_to root_path do %>
