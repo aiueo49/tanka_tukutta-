@@ -2,7 +2,8 @@ name: Render Deploy
 
 on:
   push:
-    branches: [main]
+#動作確認のため一旦コメントアウト
+#    branches: [main]
 
 jobs:
   deploy:
@@ -14,4 +15,5 @@ jobs:
         env:
           deploy_url: ${{ secrets.RENDER_DEPLOY_HOOK__URL }}
         run: |
+          echo "Deploy URL: $deploy_url"
           curl "$deploy_url"
