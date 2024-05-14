@@ -2,7 +2,7 @@
   <div data-controller="autocomplete" data-autocomplete-url-value="/search" role="combobox">
     <%= f.search_field :title_or_content_cont, data: { autocomplete_target: 'input' }, placeholder: 'Search', class: "w-full px-6 py-2 leading-tight text-gray-700 rounded-l-full focus:outline-none" %>
     <%= f.hidden_field :title, data: { autocomplete_target: 'hidden' } %>
-    <div data-autocomplete-target="results"></div>
+    <div data-autocomplete-target="results" class="w-full max-h-64 overflow-auto bg-white border border-gray-300 rounded-md shadow-lg"></div>
   </div>
   <%= f.submit '検索', class: "px-6 py-2 text-gray bg-sky-300 rounded-r-full hover:bg-blue-600 focus:outline-none" %>
 <% end %>
