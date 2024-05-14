@@ -7,6 +7,13 @@ class PostsController < ApplicationController
     @posts = @q.result(distinct: true).includes(:user).order("created_at desc")
   end
 
+  def search
+    @posts = Post.where("title like ? or content like ?", "%#{params[:q]}%", "%#{params[:q]}%")
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def current_user_page
     @current_user_posts = current_user.posts
   end
