@@ -22,4 +22,7 @@ Rails.application.routes.draw do
   resources :posts
   get 'terms', to: 'pages#terms'
   get 'privacy', to: 'pages#privacy'
+  resources :posts do
+    get :search, on: :collection
+  end
 end
