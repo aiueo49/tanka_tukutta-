@@ -83,9 +83,11 @@ class PostsController < ApplicationController
     # 現在のユーザーを@postの作成者として設定する
     @post.user = current_user
 
+    # プロンプトを作成
+    prompt = @post.title
     # 画像生成APIを利用して画像を生成
-    image_api = OpenAi::ImageApi.new(@post.title) 
-    image_url = image_api.generate_image
+    image_api = OpenAi::ImageApi.new
+    image_url = image_api.generate_image(prompt)
     # 生成した画像のURLを@postに保存
     @post.image_url = image_url
 
@@ -111,6 +113,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:content, :title)
+    params.require(:post).permit(:content, :title, :image_url)
   end
 end

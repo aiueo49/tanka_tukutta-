@@ -6,6 +6,8 @@
     <div class="font-serif text-lg mb-6", style="writing-mode: vertical-rl; text-orientation: upright;">
       <%= @post.content %>
     </div>
+    <div class="font-serif text-lg mb-6", style="writing-mode: vertical-rl; text-orientation: upright;">
+      <%= @post.image_url %>
   </div>
   <div class="flex flex-col">
     <%= link_to "Share on X", "https://twitter.com/intent/tweet?text=#{CGI.escape(@post.content)}", class: "bg-pink-400 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded mb-4 text-center", target: "_blank" %>
