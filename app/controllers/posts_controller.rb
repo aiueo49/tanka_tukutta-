@@ -83,6 +83,12 @@ class PostsController < ApplicationController
     # 現在のユーザーを@postの作成者として設定する
     @post.user = current_user
 
+    # 画像生成APIを利用して画像を生成
+    image_api = OpenAi::ImageApi.new(@post.title) 
+    image_url = image_api.generate_image
+    # 生成した画像のURLを@postに保存
+    @post.image_url = image_url
+
     if @post.save
       # セッションからuser_inputを削除
       session.delete(:title)
