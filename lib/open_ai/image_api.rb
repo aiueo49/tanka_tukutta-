@@ -49,7 +49,7 @@ class OpenAi::ImageApi
     image_data = response.body
 
     # S3へ画像をアップロード
-    obj.put(body: image_data, acl: 'public-read')
+    obj.put(body: image_data)
 
     # アップロードした画像のURLを返す
     obj.public_url
