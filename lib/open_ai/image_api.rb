@@ -11,6 +11,7 @@ class OpenAi::ImageApi
     }
   end
 
+  # 画像生成APIを利用して画像を生成する
   def generate_image(prompt)
     conn = Faraday.new(url: @base_url) do |faraday|
       faraday.request :json
@@ -35,20 +36,30 @@ class OpenAi::ImageApi
 
     image_url
   end
+
+  # 生成した画像をS3に保存する
+  def upload_image_to_s3(image_url)
+    s3 = Aws::S3::Resource.new
+    bucket_name = ENV["S3_BUCKET_NAME"]
+    file_name = "generated_image_#{Time.now.to_i}.png"
+    obj = s3.bucket(bucket_name).object("uploads/#{file_name}")
+
+    # Faradayを使用して画像をダウンロード
+    response = Faraday.get(image_url)
+    image_data = response.body
+
+    # S3へ画像をアップロード
+    obj.put(body: image_data)
+
+    # アップロードした画像のURLを返す
+    obj.public_url
+  end
+
+  # 画像生成APIを利用して画像を生成し、S3にアップロードする
+  def generate_and_upload_image_to_s3(prompt)
+    image_url = generate_image(prompt)
+    s3_image_url = upload_image_to_s3(image_url)
+    
+    s3_image_url
+  end
 end
-
-# APIキーを設定
-# api_key = ENV["OPEN_AI_API_KEY"]
-
-# インスタンス作成
-# image_api = OpenAi::ImageApi.new(api_key)
-
-# ユーザー入力を受け取り、画像を生成
-# puts "Please enter a description for the image you want to generate:"
-# user_input = gets.chomp
-
-# 画像生成
-# image_url = image_api.generate_image(user_input)
-
-# 画像URLを表示
-# puts "Image generated! You can view it at: #{image_url}"
