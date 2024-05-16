@@ -36,19 +36,3 @@ class OpenAi::ImageApi
     image_url
   end
 end
-
-# APIキーを設定
-# api_key = ENV["OPEN_AI_API_KEY"]
-
-# インスタンス作成
-# image_api = OpenAi::ImageApi.new(api_key)
-
-# ユーザー入力を受け取り、画像を生成
-# puts "Please enter a description for the image you want to generate:"
-# user_input = gets.chomp
-
-# 画像生成
-# image_url = image_api.generate_image(user_input)
-
-# 画像URLを表示
-# puts "Image generated! You can view it at: #{image_url}"
