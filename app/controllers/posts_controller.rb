@@ -87,9 +87,9 @@ class PostsController < ApplicationController
     prompt = @post.title
     # 画像生成APIを利用して画像を生成
     image_api = OpenAi::ImageApi.new
-    image_url = image_api.generate_image(prompt)
+    s3_image_url = image_api.generate_and_upload_image_to_s3(prompt)
     # 生成した画像のURLを@postに保存
-    @post.image_url = image_url
+    @post.image_url = s3_image_url
 
     if @post.save
       # セッションからuser_inputを削除
