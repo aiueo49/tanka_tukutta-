@@ -44,8 +44,12 @@ class OpenAi::ImageApi
     file_name = "generated_image_#{Time.now.to_i}.png"
     obj = s3.bucket(bucket_name).object("uploads/#{file_name}")
 
+    # Faradayを使用して画像をダウンロード
+    response = Faraday.get(image_url)
+    image_data = response.body
+
     # S3へ画像をアップロード
-    obj.put(body: URI.open(image_url), acl: 'public-read')
+    obj.put(body: image_data, acl: 'public-read')
 
     # アップロードした画像のURLを返す
     obj.public_url
