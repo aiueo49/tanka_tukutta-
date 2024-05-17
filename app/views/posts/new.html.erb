@@ -3,7 +3,7 @@
     <div>
       <h1 class="font-bold text-4xl">短歌生成フォーム</h1>
     </div>
-    <%= form_with model: @posts, url: generate_tanka_posts_path, method: :post, data: { turbo: false }, class: "mt-8 space-y-6" do |f| %>
+    <%= form_with model: @posts, url: select_posts_path, method: :post, data: { turbo: false }, class: "mt-8 space-y-6" do |f| %>
       <input type="hidden" name="remember" value="true">
       <div class="rounded-md shadow-sm -space-y-px">
         <div>

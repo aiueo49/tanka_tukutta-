@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :require_login, only: [:new, :generate_tanka]
+  before_action :require_login, only: [:new, :select]
 
   def index
     # @posts = Post.all
@@ -17,7 +17,7 @@ class PostsController < ApplicationController
   def new
   end
 
-  def generate_tanka
+  def select
     user_input = params[:title]
     predefind_response = "
     # Prompt
@@ -69,7 +69,7 @@ class PostsController < ApplicationController
     session[:title] = user_input
     session[:tankas] = @tankas
 
-    render 'generate_tanka'
+    render 'select'
   end
 
   def create
