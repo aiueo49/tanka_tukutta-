@@ -19,15 +19,26 @@
   </div>
 </div>
 
+<style>
+  .option:hover,
+  .selected:hover {
+    background-color: lightgray;
+  }
+
+  .selected {
+    background-color: lightgray;
+  }
+</style>
+
 <script>
   document.addEventListener('DOMContentLoaded', (event) => {
     const options = document.querySelectorAll('.option');
     options.forEach((option) => {
       option.addEventListener('click', (event) => {
         options.forEach((opt) => {
-          opt.style.backgroundColor = 'white';
+          opt.classList.remove('selected');
         });
-        option.style.backgroundColor = 'lightgray';
+        option.classList.add('selected');
       });
     });
   });
