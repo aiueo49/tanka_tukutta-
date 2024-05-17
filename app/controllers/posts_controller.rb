@@ -14,9 +14,9 @@ class PostsController < ApplicationController
     end
   end
 
-  def current_user_page
-    @current_user_posts = current_user.posts
-  end
+  # def current_user_page
+    # @current_user_posts = current_user.posts
+  # end
 
   def new
   end
