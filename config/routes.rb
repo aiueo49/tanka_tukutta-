@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'mypages/index' => 'mypages#index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -15,9 +16,9 @@ Rails.application.routes.draw do
   get 'first_login_page' => 'user_sessions#first_login_page', as: :first_login_page
   post '/guest_login' => 'user_sessions#guest_login', as: :guest_login
   resources :posts, only: %i[new] do
-    post 'generate_tanka', on: :collection
-    get 'generate_tanka', on: :collection
-    get 'current_user_page', on: :collection
+    post 'select', on: :collection
+    get 'select', on: :collection
+  # get 'current_user_page', on: :collection
   end
   resources :posts
   get 'terms', to: 'pages#terms'
