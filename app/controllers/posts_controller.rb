@@ -19,6 +19,52 @@ class PostsController < ApplicationController
 
   def select
     user_input = params[:title]
+    @tankas = request_tanka_from_openai(user_input)
+
+    # セッションに保存
+    session[:title] = user_input
+    session[:tankas] = @tankas
+
+    render 'select'
+  end
+
+  def create
+    @post = Post.new(post_params)
+    # セッションからuser_inputを取得
+    @post.title = session[:title]
+    # 現在のユーザーを@postの作成者として設定する
+    @post.user = current_user
+
+    # プロンプトを作成
+    prompt = @post.title
+    # 画像生成APIを利用して画像を生成
+    image_api = OpenAi::ImageApi.new
+    s3_image_url = image_api.generate_and_upload_image_to_s3(prompt)
+    # 生成した画像のURLを@postに保存
+    @post.image_url = s3_image_url
+
+    if @post.save
+      # セッションからuser_inputを削除
+      session.delete(:title)
+      redirect_to @post, notice: '短歌を投稿しました。'
+    else
+      render 'new'
+    end
+  end
+
+  def show
+    @post = Post.find(params[:id])
+  end
+
+  def destroy
+    post = current_user.posts.find(params[:id])
+    post.destroy!
+    redirect_to posts_path, notice: '短歌を削除しました。', status: :see_other
+  end
+
+  private
+
+  def request_tanka_from_openai(user_input)
     predefind_response = "
     # Prompt
     背景情報：ユーザーが「#{user_input}」というをもとにして短歌を生成したいとリクエストしました。
@@ -63,50 +109,9 @@ class PostsController < ApplicationController
     chat_api = OpenAi::ChatApi.new(prompt)
     tanka_response = chat_api.chat(user_input)
     
-    @tankas = tanka_response.split("\n").reject(&:empty?)
-
-    # セッションに保存
-    session[:title] = user_input
-    session[:tankas] = @tankas
-
-    render 'select'
+    tankas = tanka_response.split("\n").reject(&:empty?)
+    tankas
   end
-
-  def create
-    @post = Post.new(post_params)
-    # セッションからuser_inputを取得
-    @post.title = session[:title]
-    # 現在のユーザーを@postの作成者として設定する
-    @post.user = current_user
-
-    # プロンプトを作成
-    prompt = @post.title
-    # 画像生成APIを利用して画像を生成
-    image_api = OpenAi::ImageApi.new
-    s3_image_url = image_api.generate_and_upload_image_to_s3(prompt)
-    # 生成した画像のURLを@postに保存
-    @post.image_url = s3_image_url
-
-    if @post.save
-      # セッションからuser_inputを削除
-      session.delete(:title)
-      redirect_to @post, notice: '短歌を投稿しました。'
-    else
-      render 'new'
-    end
-  end
-
-  def show
-    @post = Post.find(params[:id])
-  end
-
-  def destroy
-    post = current_user.posts.find(params[:id])
-    post.destroy!
-    redirect_to posts_path, notice: '短歌を削除しました。', status: :see_other
-  end
-
-  private
 
   def post_params
     params.require(:post).permit(:content, :title)
