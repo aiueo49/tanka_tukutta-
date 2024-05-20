@@ -6,7 +6,6 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
     <%= favicon_link_tag "favicon.ico" %>
@@ -14,7 +13,12 @@
     <%= display_meta_tags(default_meta_tags) %>
   </head>
 
-  <body class="bg-pink-50 flex flex-col min-h-screen">
+  <body class="font-serif bg-pink-50 flex flex-col min-h-screen">
+  <video autoplay muted loop class="fixed top-0 left-0 w-full h-full z-[-1] object-cover">
+    <source src="/videos/22451_1280x720 (1).mp4" type="video/mp4">
+  </video>
+
+  <div class="fixed inset-0 bg-black bg-opacity-30 z-[-1]"></div>
 
   <header>
     <nav class="bg-pink-500 text-white p-4">
@@ -47,37 +51,25 @@
     </nav> 
   </header>
 
-    <div class="fixed left-0 top-1/2 transform -translate-y-1/2 bg-transparent p-5 flex flex-col space-y-4">
-      <% if current_page?(posts_path) %>
-        <%= link_to root_path do %>
-          <div class="icon-container">
-            <i class="fa-solid fa-house fa-lg hover:text-blue-500"></i>
-            <span class="icon-label">ホーム</span>
-          </div>
-        <% end %>
-      <% else %>
-        <%= link_to posts_path do %>
-          <div class="icon-container">
-            <i class="fa-solid fa-users fa-lg hover:text-blue-500"></i>
-            <span class="icon-label">みんなの短歌</span>
-          </div>
-        <% end %>
+  <sidebar>
+    <div class="fixed left-0 bottom-16 bg-transparent p-5 flex flex-col space-y-4">
+      <%= link_to new_post_path do %>
+        <div class="icon-container text-4xl text-white hover:underline">
+          短歌をつくる
+        </div>
       <% end %>
-      <% if logged_in? %>
-        <%= link_to mypages_index_path do %>
-          <div class="icon-container">
-            <i class="fa-solid fa-user fa-lg hover:text-blue-500"></i>
-            <span class="icon-label">マイページ</span>
-          </div>
-        <% end %>
-        <%= link_to logout_path, data: { turbo_method: :delete } do %>
-          <div class="icon-container">
-            <i class="fa-solid fa-arrow-right-from-bracket fa-lg hover:text-blue-500"></i>
-            <span class="icon-label">ログアウト</span>
-          </div>
-        <% end %>
+      <%= link_to posts_path do %>
+        <div class="icon-container text-4xl text-white hover:underline">
+          みんなの短歌
+        </div>
+      <% end %>
+      <%= link_to mypages_index_path do %>
+        <div class="icon-container text-4xl text-white hover:underline">
+          あなたの短歌
+        </div>
       <% end %>
     </div>
+  </sidebar>
 
     <main class="container mx-auto mt-28 px-5 flex flex-col flex-grow">
       <%= render "layouts/flash_messages" %>
