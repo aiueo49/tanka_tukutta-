@@ -21,7 +21,7 @@
   <div class="fixed inset-0 bg-black bg-opacity-30 z-[-1]"></div>
 
   <header>
-    <nav class="bg-pink-500 text-white p-4">
+    <nav class="bg-transparent text-white p-4 border-b border-white custom-border">
       <div class="container mx-auto flex justify-between items-center">
         <div class="flex justify-center items-center">
           <%= link_to root_path, class: "flex justify-center items-center text-2xl font-bold" do %>
@@ -50,6 +50,12 @@
       </div>
     </nav> 
   </header>
+
+  <style>
+    .custom-border {
+      border-bottom-width: 0.5px;
+    }
+  </style>
 
   <sidebar>
     <div class="fixed left-0 bottom-16 bg-transparent p-5 flex flex-col space-y-4">
