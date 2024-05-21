@@ -36,28 +36,22 @@
           <span></span>
         </div>
         <ul class="slide-menu">
-          <li>メニュー１</li>
-          <li>メニュー２</li>
-          <li>メニュー３</li>
-        </ul>
-          
-        <div>
           <% if logged_in? %>
-            <%= link_to mypages_index_path, class: "mr-5" do %>
+            <li><%= link_to mypages_index_path do %>
               マイページ
-            <% end %>
-            <%= link_to logout_path, data: { turbo_method: :delete } do %>
+            <% end %></li>
+            <li><%= link_to logout_path, data: { turbo_method: :delete } do %>
               ログアウト
-            <% end %>
+            <% end %></li>
           <% else %>
-            <%= link_to login_path, class: "mr-5" do %>
+            <li><%= link_to login_path do %>
               ログイン
-            <% end %>
-            <%= link_to new_user_path do %>
+            <% end %></li>
+            <li><%= link_to new_user_path do %>
               新規登録
-            <% end %>
+            <% end %></li>
           <% end %>
-        </div>
+        </ul>
       </div>
     </nav> 
   </header>
