@@ -1,34 +1,38 @@
-<div class="flex flex-col items-center justify-center bg-white py-40">
-  <div class="max-w-md w-full space-y-8">
-    <div>
-      <h1 class="mt-6 text-center text-3xl font-extrabold text-gray-900">新規会員登録</h1>
-    </div>
-    <%= form_with model: @user, class: "mt-8 space-y-6" do |f| %>
-      <div class="rounded-md shadow-sm -space-y-px">
-        <div>
-          <%= f.label :name, '名前', class: "sr-only" %>
-          <%= f.text_field :name, class: "mb-4 appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm", placeholder: "名前" %>
-        </div>
-        <div>
-          <%= f.label :email, 'メールアドレス', class: "sr-only" %>
-          <%= f.email_field :email, class: "mb-4 appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm", placeholder: "メールアドレス" %>
-        </div>
-        <div>
-          <%= f.label :password, 'パスワード', class: "sr-only" %>
-          <%= f.password_field :password, class: "mb-4 appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm", placeholder: "パスワード" %>
-        </div>
-        <div>
-          <%= f.label :password_confirmation, 'パスワード（確認用）', class: "sr-only" %>
-          <%= f.password_field :password_confirmation, class: "mb-4 appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm", placeholder: "パスワード（確認用）" %>
-        </div>
+<div class="flex flex-grow justify-center items-center">
+  <div class="w-full max-w-4xl rounded-lg p-6">
+    <h1 class="text-4xl text-white text-center mb-6">新規会員登録</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <!-- Left column -->
+      <div class="border p-4 rounded-lg shadow-md">
+        <h2 class="text-lg text-white font-bold mb-4 underline text-center">新規会員登録</h2>
+        <%= form_with model: @user, method: :post, class: "space-y-4" do |f| %>
+          <div>
+            <%= f.label :name, "名前", class: "block text-white" %>
+            <%= f.text_field :name, class: "w-full px-3 py-2 border rounded-lg", required: true %>
+          </div>
+          <div>
+            <%= f.label :email, "メールアドレス", class: "block text-white" %>
+            <%= f.email_field :email, class: "w-full px-3 py-2 border rounded-lg", required: true %>
+          </div>
+          <div>
+            <%= f.label :password, "パスワード", class: "block text-white" %>
+            <%= f.password_field :password, class: "w-full px-3 py-2 border rounded-lg", required: true %>
+          </div>
+          <div>
+            <%= f.label :password_confirmation, "パスワード（確認用）", class: "block text-white" %>
+            <%= f.password_field :password_confirmation, class: "w-full px-3 py-2 border rounded-lg", required: true %>
+          </div>
+          <div>
+            <%= f.submit "登録する", class: "w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-700" %>
+          </div>
+        <% end %>
       </div>
-
-      <div>
-        <%= f.submit '登録', class: "group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-bold rounded-md text-white bg-pink-500 hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+      <!-- Right column -->
+      <div class="border p-4 rounded-lg shadow-md">
+        <h2 class="text-lg text-white font-bold mb-4 underline text-center">すでにアカウントをお持ちですか？</h2>
+        <p class="mb-4 text-white">すでにアカウントをお持ちの場合は、こちらからログインしてください。</p>
+        <%= link_to "ログイン", login_path, class: "block w-full text-center bg-gray-500 text-white py-2 rounded-lg hover:bg-gray-700" %>
       </div>
-    <% end %>
-    <div class="text-center">
-      <%= link_to '戻る', root_path, class: "font-medium text-indigo-600 hover:text-indigo-500" %>
     </div>
   </div>
 </div>
