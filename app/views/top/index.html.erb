@@ -1,4 +1,4 @@
-<div class="flex flex-col justify-center items-center">
+<div class="flex flex-grow flex-col justify-center items-center">
   <p class="text-white text-6xl mb-8">美しい短歌を生成しましょう</p>
   <p class="text-white text-2xl mb-8">あなたの今の気持ちを、AIが短歌にします。</p>
   <% if logged_in? %>
@@ -8,8 +8,7 @@
     </div>
   <% else %>
     <div class="flex space-x-4">
-      <%= link_to "ログインしてはじめる", login_path, class: "bg-pink-400 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded" %>
-      <%= link_to "ゲストログインではじめる", guest_login_path, data: { turbo_method: :post }, class: "bg-sky-400 hover:bg-sky-600 text-white font-bold py-2 px-4 rounded" %>
+      <%= link_to "短歌をつくる", new_post_path, class: "bg-pink-400 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded" %>
     </div>
   <% end %>
 </div>
