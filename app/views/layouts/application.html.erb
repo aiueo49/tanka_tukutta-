@@ -36,29 +36,29 @@
           <span></span>
         </div>
         <ul class="slide-menu">
-          <li><%= link_to new_post_path do %>
-            短歌をつくる
-          <% end %></li>
+          <%= link_to new_post_path do %>
+            <li>短歌をつくる</li>
+          <% end %>
           <% if logged_in? %>
-            <li><%= link_to posts_path do %>
-              みんなの短歌
-            <% end %></li>
-            <li><%= link_to mypages_index_path do %>
-              あなたの短歌
-            <% end %></li>
-            <li><%= link_to logout_path, data: { turbo_method: :delete } do %>
-              ログアウト
-            <% end %></li>
+            <%= link_to posts_path do %>
+              <li>みんなの短歌</li>
+            <% end %>
+            <%= link_to mypages_index_path do %>
+              <li>あなたの短歌</li>
+            <% end %>
+            <%= link_to logout_path, data: { turbo_method: :delete } do %>
+              <li>ログアウト</li>
+            <% end %>
           <% else %>
-            <li><%= link_to posts_path do %>
-              みんなの短歌
-            <% end %></li>
-            <li><%= link_to login_path do %>
-              ログイン
-            <% end %></li>
-            <li><%= link_to new_user_path do %>
-              新規登録
-            <% end %></li>
+            <%= link_to posts_path do %>
+              <li>みんなの短歌</li>
+            <% end %>
+            <%= link_to login_path do %>
+              <li>ログイン</li>
+            <% end %>
+            <%= link_to new_user_path do %>
+              <li>新規登録</li>
+            <% end %>
           <% end %>
         </ul>
       </div>
@@ -121,6 +121,10 @@
     .slide-menu.active {
       right: 0;
       transform: translateX(0);
+    }
+    .slide-menu li:hover {
+      background-color: #f0f0f0;
+      color: #333;
     }
   </style>
 
