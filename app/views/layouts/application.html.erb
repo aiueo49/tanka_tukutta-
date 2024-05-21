@@ -14,146 +14,146 @@
   </head>
 
   <body class="font-serif bg-pink-50 flex flex-col min-h-screen">
-  <video autoplay muted loop class="fixed top-0 left-0 w-full h-full z-[-1] object-cover">
-    <source src="/videos/22451_1280x720 (1).mp4" type="video/mp4">
-  </video>
+    <video autoplay muted loop class="fixed top-0 left-0 w-full h-full z-[-1] object-cover">
+      <source src="/videos/22451_1280x720 (1).mp4" type="video/mp4">
+    </video>
 
-  <div class="fixed inset-0 bg-black bg-opacity-30 z-[-1]"></div>
+    <div class="fixed inset-0 bg-black bg-opacity-30 z-[-1]"></div>
 
-  <header>
-    <nav class="bg-transparent text-white p-4 border-b border-white custom-border">
-      <div class="container mx-auto flex justify-between items-center">
-        <div class="flex justify-center items-center">
-          <%= link_to root_path, class: "flex justify-center items-center text-2xl font-bold" do %>
-            <%= image_tag "favicon.ico", alt: "main_logo", class: "header-logo", width: "30", height: "30" %>
-            <span>短歌つくったー。</span>
-          <% end %>
-            <p>ユーザーの入力をもとに、AIが短歌を自動で生成してくれるサービスです。</p>
+    <header>
+      <nav class="bg-transparent text-white p-4 border-b border-white custom-border">
+        <div class="container mx-auto flex justify-between items-center">
+          <div class="flex justify-center items-center">
+            <%= link_to root_path, class: "flex justify-center items-center text-2xl font-bold" do %>
+              <%= image_tag "favicon.ico", alt: "main_logo", class: "header-logo", width: "30", height: "30" %>
+              <span>短歌つくったー。</span>
+            <% end %>
+              <p>ユーザーの入力をもとに、AIが短歌を自動で生成してくれるサービスです。</p>
+          </div>
+          <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <ul class="slide-menu">
+            <%= link_to new_post_path do %>
+              <li>短歌をつくる</li>
+            <% end %>
+            <% if logged_in? %>
+              <%= link_to posts_path do %>
+                <li>みんなの短歌</li>
+              <% end %>
+              <%= link_to mypages_index_path do %>
+                <li>あなたの短歌</li>
+              <% end %>
+              <%= link_to logout_path, data: { turbo_method: :delete } do %>
+                <li>ログアウト</li>
+              <% end %>
+            <% else %>
+              <%= link_to posts_path do %>
+                <li>みんなの短歌</li>
+              <% end %>
+              <%= link_to login_path do %>
+                <li>ログイン</li>
+              <% end %>
+              <%= link_to new_user_path do %>
+                <li>新規登録</li>
+              <% end %>
+            <% end %>
+          </ul>
         </div>
-        <div class="hamburger">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-        <ul class="slide-menu">
-          <%= link_to new_post_path do %>
-            <li>短歌をつくる</li>
-          <% end %>
-          <% if logged_in? %>
-            <%= link_to posts_path do %>
-              <li>みんなの短歌</li>
-            <% end %>
-            <%= link_to mypages_index_path do %>
-              <li>あなたの短歌</li>
-            <% end %>
-            <%= link_to logout_path, data: { turbo_method: :delete } do %>
-              <li>ログアウト</li>
-            <% end %>
-          <% else %>
-            <%= link_to posts_path do %>
-              <li>みんなの短歌</li>
-            <% end %>
-            <%= link_to login_path do %>
-              <li>ログイン</li>
-            <% end %>
-            <%= link_to new_user_path do %>
-              <li>新規登録</li>
-            <% end %>
-          <% end %>
-        </ul>
+      </nav> 
+    </header>
+
+    <style>
+      body {
+        overflow-x: hidden;
+      }
+      .hamburger {
+        width: 40px;
+        height: 25px;
+        position: relative;
+        position: fixed;
+        top: 20px;
+        right: 40px;
+      }
+      .hamburger span {
+        position: absolute;
+        width: 100%;
+        height: 1px;
+        background-color: white;
+        transition: 0.5s;
+      }
+      .hamburger span:first-of-type {
+        top: 0;
+      }
+      .hamburger span:nth-of-type(2) {
+        top: 50%;
+      }
+      .hamburger span:last-of-type {
+        top: 100%;
+      }
+      .slide-menu {
+        background: transparent;
+        position: fixed;
+        top: 65px;
+        width: 15%;
+        right: -15%;
+        transform: translateX(100%);
+        transition: 0.5s;
+      }
+      .slide-menu li {
+        color: white;
+        line-height: 400%;
+        text-align: center;
+      }
+      .hamburger.active span:first-of-type {
+        top: 50%;
+        transform: rotate(45deg);
+      }
+      .hamburger.active span:nth-of-type(2) {
+        opacity: 0;
+      }
+      .hamburger.active span:last-of-type {
+        top: 50%;
+        transform: rotate(-45deg);
+      }
+      .slide-menu.active {
+        right: 0;
+        transform: translateX(0);
+      }
+      .slide-menu li:hover {
+        background-color: #f0f0f0;
+        color: #333;
+      }
+    </style>
+
+    <script>
+      document.querySelector('.hamburger').addEventListener('click', function() {
+        this.classList.toggle('active');
+        document.querySelector('.slide-menu').classList.toggle('active');
+      });
+    </script>
+
+    <sidebar>
+      <div class="fixed left-0 bottom-16 bg-transparent p-5 flex flex-col space-y-4">
+        <%= link_to new_post_path do %>
+          <div class="icon-container text-4xl text-white hover:underline">
+            短歌をつくる
+          </div>
+        <% end %>
+        <%= link_to posts_path do %>
+          <div class="icon-container text-4xl text-white hover:underline">
+            みんなの短歌
+          </div>
+        <% end %>
+        <%= link_to mypages_index_path do %>
+          <div class="icon-container text-4xl text-white hover:underline">
+            あなたの短歌
+          </div>
+        <% end %>
       </div>
-    </nav> 
-  </header>
-
-  <style>
-    body {
-      overflow-x: hidden;
-    }
-    .hamburger {
-      width: 40px;
-      height: 25px;
-      position: relative;
-      position: fixed;
-      top: 20px;
-      right: 40px;
-    }
-    .hamburger span {
-      position: absolute;
-      width: 100%;
-      height: 1px;
-      background-color: white;
-      transition: 0.5s;
-    }
-    .hamburger span:first-of-type {
-      top: 0;
-    }
-    .hamburger span:nth-of-type(2) {
-      top: 50%;
-    }
-    .hamburger span:last-of-type {
-      top: 100%;
-    }
-    .slide-menu {
-      background: transparent;
-      position: fixed;
-      top: 65px;
-      width: 15%;
-      right: -15%;
-      transform: translateX(100%);
-      transition: 0.5s;
-    }
-    .slide-menu li {
-      color: white;
-      line-height: 400%;
-      text-align: center;
-    }
-    .hamburger.active span:first-of-type {
-      top: 50%;
-      transform: rotate(45deg);
-    }
-    .hamburger.active span:nth-of-type(2) {
-      opacity: 0;
-    }
-    .hamburger.active span:last-of-type {
-      top: 50%;
-      transform: rotate(-45deg);
-    }
-    .slide-menu.active {
-      right: 0;
-      transform: translateX(0);
-    }
-    .slide-menu li:hover {
-      background-color: #f0f0f0;
-      color: #333;
-    }
-  </style>
-
-  <script>
-    document.querySelector('.hamburger').addEventListener('click', function() {
-      this.classList.toggle('active');
-      document.querySelector('.slide-menu').classList.toggle('active');
-    });
-  </script>
-
-  <sidebar>
-    <div class="fixed left-0 bottom-16 bg-transparent p-5 flex flex-col space-y-4">
-      <%= link_to new_post_path do %>
-        <div class="icon-container text-4xl text-white hover:underline">
-          短歌をつくる
-        </div>
-      <% end %>
-      <%= link_to posts_path do %>
-        <div class="icon-container text-4xl text-white hover:underline">
-          みんなの短歌
-        </div>
-      <% end %>
-      <%= link_to mypages_index_path do %>
-        <div class="icon-container text-4xl text-white hover:underline">
-          あなたの短歌
-        </div>
-      <% end %>
-    </div>
-  </sidebar>
+    </sidebar>
 
     <main class="container mx-auto mt-28 px-5 flex flex-col flex-grow">
       <%= render "layouts/flash_messages" %>
@@ -161,16 +161,18 @@
     </main>
 
     <footer class="text-center mt-10">
-      <%= link_to "利用規約", terms_path, class: "text-gray-500" %>
-      <%= link_to "プライバシーポリシー", privacy_path, class: "text-gray-500" %>
-      <%= link_to "お問い合わせ", '#', class: "text-gray-500" %>
-      <p class="text-gray-500">© 2024 短歌つくったー。</p>
-      <%= link_to "https://twitter.com/kitaji_i", target: "_blank", rel: "noopener noreferrer", class: "text-gray-500 mr-1" do %>
-        <i class="fa-brands fa-square-x-twitter fa-lg"></i>
-      <% end %>
-      <%= link_to "https://github.com/aiueo49", target: "_blank", rel: "noopener noreferrer", class: "text-gray-500 ml-1" do %>
-        <i class="fa-brands fa-github fa-lg"></i>
-      <% end %>
+      <%= link_to "利用規約", terms_path, class: "text-white hover:underline" %>
+      <%= link_to "プライバシーポリシー", privacy_path, class: "text-white hover:underline" %>
+      <%= link_to "お問い合わせ", '#', class: "text-white hover:underline" %>
+      <div class="flex justify-center items-center">
+        <p class="text-white mb-2">© 2024 短歌つくったー。</p>
+        <%= link_to "https://twitter.com/kitaji_i", target: "_blank", rel: "noopener noreferrer", class: "text-white mr-1 hover:underline" do %>
+          <i class="fa-brands fa-square-x-twitter fa-lg"></i>
+        <% end %>
+        <%= link_to "https://github.com/aiueo49", target: "_blank", rel: "noopener noreferrer", class: "text-white ml-1 hover:underline" do %>
+          <i class="fa-brands fa-github fa-lg"></i>
+        <% end %>
+      </div>
     </footer>
   </body>
 </html>
