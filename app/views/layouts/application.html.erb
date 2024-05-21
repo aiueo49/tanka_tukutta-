@@ -30,6 +30,17 @@
           <% end %>
             <p>ユーザーの入力をもとに、AIが短歌を自動で生成してくれるサービスです。</p>
         </div>
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <ul class="slide-menu">
+          <li>メニュー１</li>
+          <li>メニュー２</li>
+          <li>メニュー３</li>
+        </ul>
+          
         <div>
           <% if logged_in? %>
             <%= link_to mypages_index_path, class: "mr-5" do %>
@@ -52,10 +63,69 @@
   </header>
 
   <style>
-    .custom-border {
-      border-bottom-width: 0.5px;
+    body {
+      overflow-x: hidden;
+    }
+    .hamburger {
+      width: 40px;
+      height: 25px;
+      position: relative;
+      position: fixed;
+      top: 20px;
+      right: 30px;
+    }
+    .hamburger span {
+      position: absolute;
+      width: 100%;
+      height: 1px;
+      background-color: white;
+      transition: 0.5s;
+    }
+    .hamburger span:first-of-type {
+      top: 0;
+    }
+    .hamburger span:nth-of-type(2) {
+      top: 50%;
+    }
+    .hamburger span:last-of-type {
+      top: 100%;
+    }
+    .slide-menu {
+      background: rgba(0, 0, 0, 0.8);
+      position: fixed;
+      top: 65px;
+      width: 100%;
+      left: 0;
+      transform: translateX(100%);
+      transition: 0.5s;
+    }
+    .slide-menu li {
+      color: white;
+      line-height: 400%;
+      text-align: center;
+    }
+    .hamburger.active span:first-of-type {
+      top: 50%;
+      transform: rotate(45deg);
+    }
+    .hamburger.active span:nth-of-type(2) {
+      opacity: 0;
+    }
+    .hamburger.active span:last-of-type {
+      top: 50%;
+      transform: rotate(-45deg);
+    }
+    .slide-menu.active {
+      transform: translateX(0);
     }
   </style>
+
+  <script>
+    document.querySelector('.hamburger').addEventListener('click', function() {
+      this.classList.toggle('active');
+      document.querySelector('.slide-menu').classList.toggle('active');
+    });
+  </script>
 
   <sidebar>
     <div class="fixed left-0 bottom-16 bg-transparent p-5 flex flex-col space-y-4">
