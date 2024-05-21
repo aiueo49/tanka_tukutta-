@@ -1,7 +1,6 @@
 <div class="flex flex-col justify-center items-center">
-  <%= image_tag "main_logo.png", alt: "main_logo" %>
-  <p>ユーザーの入力をもとに、</p>
-  <p class="mb-2">AIが短歌を自動で生成してくれるサービスです。</p>
+  <p class="text-white text-6xl mb-8">美しい短歌を生成しましょう</p>
+  <p class="text-white text-2xl mb-8">あなたの今の気持ちを、AIが短歌にします。</p>
   <% if logged_in? %>
     <div class="flex space-x-4">
       <%= link_to "短歌をつくる", new_post_path, class: "bg-pink-400 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded" %>
