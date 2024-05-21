@@ -1,5 +1,5 @@
 class MypagesController < ApplicationController
-  before_action :not_authenticated
+  before_action :require_login
 
   def index
   # def current_user_page
