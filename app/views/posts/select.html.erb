@@ -1,6 +1,7 @@
 <div class="flex flex-col items-center justify-center">
   <div class="w-full max-w-4xl rounded-lg p-6">
-    <h1 class="text-4xl text-white text-center mb-6">ひとつ選んでください。</h1>
+    <h1 class="text-4xl text-white text-center mb-6">短歌選択画面</h1>
+    <p class="text-white text-center">ひとつ選んで決定ボタンを押してください。</p>
     <div class="p-4 rounded-lg">
       <%= form_with model: @post, url: posts_path, method: :post, data: { turbo: false }, class: "space-y-6", id: "myForm" do |f| %>
         <div class="flex space-x-4">
