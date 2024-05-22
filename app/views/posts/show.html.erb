@@ -1,19 +1,35 @@
-<div class="flex flex-col items-center justify-center mx-auto">
-  <div class="flex">
+<div class="flex flex-col items-center justify-center mx-auto py-12">
+  <div class="backdrop-blur-sm border p-4 bg-white rounded flex flex-row space-x-4">
     <% if @post.image_url.present? %>
-      <div class="font-serif text-lg mb-6", style="writing-mode: vertical-rl; text-orientation: upright;">
-        <%= image_tag @post.image_url %>
+      <div class="flex-shrink-0 max-w-xs">
+        <%= image_tag @post.image_url, class: "rounded-lg shadow-md w-full h-auto" %>
       </div>
     <% end %>
-    <div class="font-serif text-lg mb-6", style="writing-mode: vertical-rl; text-orientation: upright;">
-      <%= @post.user.name %>
-    </div>
-    <div class="font-serif text-lg mb-6", style="writing-mode: vertical-rl; text-orientation: upright;">
-      <%= @post.content %>
+    <div class="flex flex-col justify-center items-center space-y-4">
+      <div class="font-bold text-4xl mb-6 text-center vertical-text">
+        <% @post.content.split('　').each do |line| %>
+          <p><%= line %></p>
+        <% end %>
+      </div>
+      <div class="text-lg text-center vertical-text">
+        <p><%= @post.user.name %></p>
+      </div>
     </div>
   </div>
-  <div class="flex flex-col">
-    <%= link_to "Share on X", "https://twitter.com/intent/tweet?text=#{CGI.escape(@post.content)}", class: "bg-pink-400 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded mb-4 text-center", target: "_blank" %>
-    <%= link_to '戻る', posts_path, class: "bg-sky-400 hover:bg-sky-600 text-white font-bold py-2 px-4 rounded text-center" %>
+  <div class="flex justify-between w-full mt-6 space-x-4">
+    <%= link_to "Xでシェアする", "https://twitter.com/intent/tweet?text=#{CGI.escape(@post.content)}", class: "bg-pink-400 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded text-center", target: "_blank" %>
+    <%= link_to 'みんなの短歌を見る', posts_path, class: "bg-sky-400 hover:bg-sky-600 text-white font-bold py-2 px-4 rounded text-center" %>
   </div>
 </div>
+
+<style>
+  .vertical-text {
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    white-space: pre-line;
+  }
+  .vertical-text p {
+    margin: 0;
+    padding: 0;
+  }
+</style>
