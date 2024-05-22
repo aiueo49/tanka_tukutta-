@@ -3,6 +3,6 @@ class MypagesController < ApplicationController
 
   def index
   # def current_user_page
-    @current_user_posts = current_user.posts
+    @current_user_posts = current_user.posts.order("created_at desc")
   end
 end
