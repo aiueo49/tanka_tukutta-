@@ -1,5 +1,5 @@
 <div class="flex flex-col items-center justify-center mx-auto py-12">
-  <div class="border p-4 bg-white rounded flex flex-row space-x-4">
+  <div class="border p-4 bg-white bg-opacity-90 rounded flex flex-row space-x-4 items-center">
     <% if @post.image_url.present? %>
       <div class="flex-shrink-0 max-w-xs">
         <%= image_tag @post.image_url, class: "rounded-lg shadow-md w-full h-auto" %>
@@ -17,7 +17,7 @@
     </div>
   </div>
   <div>
-    <div class="bg-white mt-6 text-center rounded">
+    <div class="bg-white mt-6 text-center rounded bg-opacity-90">
       <p class="p-1 text-lg text-black">原文：<%= @post.title %></p>
     </div>
   </div>
