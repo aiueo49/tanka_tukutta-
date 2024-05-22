@@ -202,25 +202,27 @@
       });
     </script>
 
-    <sidebar>
-      <div class="fixed left-0 bottom-16 bg-transparent p-5 flex flex-col space-y-4">
-        <%= link_to new_post_path do %>
-          <div class="icon-container text-4xl text-white hover:underline">
-            短歌をつくる
-          </div>
-        <% end %>
-        <%= link_to posts_path do %>
-          <div class="icon-container text-4xl text-white hover:underline">
-            みんなの短歌
-          </div>
-        <% end %>
-        <%= link_to mypages_index_path do %>
-          <div class="icon-container text-4xl text-white hover:underline">
-            あなたの短歌
-          </div>
-        <% end %>
-      </div>
-    </sidebar>
+    <% unless @hide_sidebar %>
+      <sidebar>
+        <div class="fixed left-0 bottom-16 bg-transparent p-5 flex flex-col space-y-4">
+          <%= link_to new_post_path do %>
+            <div class="icon-container text-4xl text-white hover:underline">
+              短歌をつくる
+            </div>
+          <% end %>
+          <%= link_to posts_path do %>
+            <div class="icon-container text-4xl text-white hover:underline">
+              みんなの短歌
+            </div>
+          <% end %>
+          <%= link_to mypages_index_path do %>
+            <div class="icon-container text-4xl text-white hover:underline">
+              あなたの短歌
+            </div>
+          <% end %>
+        </div>
+      </sidebar>
+    <% end %>
 
     <main class="container mx-auto mt-28 px-5 flex flex-col flex-grow">
       <%= render "layouts/flash_messages" %>
