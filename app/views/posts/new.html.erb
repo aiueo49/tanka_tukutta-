@@ -1,7 +1,7 @@
-<div class="flex flex-col items-center justify-center bg-white py-64">
-  <div class="max-w-md w-full space-y-8">
+<div class="flex flex-col items-center justify-center flex-grow">
+  <div class="border rounded-lg p-6 shadow-md max-w-md w-full space-y-8">
     <div>
-      <h1 class="font-bold text-4xl">短歌生成フォーム</h1>
+      <h1 class="font-bold text-4xl text-white text-center">短歌生成フォーム</h1>
     </div>
     <%= form_with model: @posts, url: select_posts_path, method: :post, data: { turbo: false }, class: "mt-8 space-y-6", id: "myForm" do |f| %>
       <input type="hidden" name="remember" value="true">
