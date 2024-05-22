@@ -23,5 +23,6 @@ Rails.application.routes.draw do
   resources :posts
   get 'terms', to: 'pages#terms'
   get 'privacy', to: 'pages#privacy'
+  get 'contact', to: 'pages#contact'
   get '/search', to: 'posts#search'
 end
