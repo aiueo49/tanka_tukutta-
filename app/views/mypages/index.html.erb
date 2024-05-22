@@ -1,24 +1,40 @@
 <% if @current_user_posts.blank? %>
   <p>まだ投稿がありません。</p>
-<% else %>
-  <div class="grid grid-cols-6 gap-4 place-items-center">
+<% end %>
+<div class="container mx-auto py-12">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
     <% @current_user_posts.each do |post| %>
-      <div class="card flex flex-col items-center justify-center">
-        <div class="card-front flex flex-col items-center justify-center h-full" style="writing-mode: vertical-rl;">
-          <div class="flex items-center justify-center mb-4"><%= post.content %></div>
-          <% if post.user %>
-            <div class="flex items-center justify-center text-gray-500 mt-56"><%= post.user.name %></div>
+      <%= link_to post_path(post), class: "border p-4 bg-white bg-opacity-90 rounded flex flex-col items-center min-h-[32rem] hover:bg-gray-300 transition-colors duration-200" do %>
+        <% if post.image_url.present? %>
+          <div class="flex-shrink-0 max-w-xs mb-4">
+            <%= image_tag post.image_url, class: "rounded-lg shadow-md w-full h-auto" %>
+          </div>
+        <% end %>
+        <div class="flex flex-col justify-between items-center space-y-4 flex-grow w-full">
+          <div class="font-bold text-4xl mb-6 text-center vertical-text flex-grow">
+            <% post.content.split(/\s|　/).each do |line| %>
+              <p><%= line %></p>
+            <% end %>
+          </div>
+          <% if post.user.present? %>
+            <div class="text-lg vertical-text self-end mr-44">
+              <p><%= post.user.name %></p>
+            </div>
           <% end %>
         </div>
-        <div class="card-back flex flex-col justify-between bg-gray-200 p-4">
-          <div class="card-description flex items-center justify-center" style="writing-mode: vertical-rl;">
-            <%= post.title %>
-          </div>
-          <div class="flex items-center justify-center">
-            <%= link_to '削除', post_path(post), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, class: "text-red-500 hover:text-red-700" %>
-          </div>
-        </div>
-      </div>
+      <% end %>
     <% end %>
   </div>
-<% end %>
+</div>
+
+<style>
+  .vertical-text {
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    white-space: pre-line;
+  }
+  .vertical-text p {
+    margin: 0;
+    padding: 0;
+  }
+</style>
