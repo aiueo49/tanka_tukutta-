@@ -1,8 +1,8 @@
-<%= search_form_for @q, url: url, html: { class: "flex justify-center items-center bg-white shadow-md relative" } do |f| %>
-  <div data-controller="autocomplete" data-autocomplete-url-value="/search" role="combobox">
-    <%= f.search_field :title_or_content_cont, data: { autocomplete_target: 'input' }, placeholder: 'Search', class: "w-full px-6 py-2 leading-tight text-gray-700 focus:outline-none" %>
+<%= search_form_for @q, url: url, html: { class: "flex items-center w-full max-w-md" } do |f| %>
+  <div data-controller="autocomplete" data-autocomplete-url-value="/search" role="combobox" class="relative w-full">
+    <%= f.search_field :title_or_content_cont, data: { autocomplete_target: 'input' }, placeholder: 'Search...', class: "w-full px-4 py-2 leading-tight text-gray-700 border border-gray-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent" %>
     <%= f.hidden_field :title, data: { autocomplete_target: 'hidden' } %>
-    <div data-autocomplete-target="results" class="w-full max-h-64 overflow-auto bg-white border border-gray-300 shadow-lg absolute"></div>
+    <div data-autocomplete-target="results" class="w-full max-h-64 overflow-auto bg-white border border-gray-300 shadow-lg absolute mt-1 z-50"></div>
   </div>
-  <%= f.submit '検索', class: "px-6 py-2 text-gray bg-sky-300 hover:bg-blue-600 focus:outline-none" %>
+  <%= f.submit '検索', class: "px-4 py-2 bg-sky-300 text-white rounded-r-lg hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-400" %>
 <% end %>
