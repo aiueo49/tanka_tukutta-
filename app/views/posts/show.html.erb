@@ -1,5 +1,5 @@
 <div class="flex flex-col items-center justify-center mx-auto py-12">
-  <div class="backdrop-blur-sm border p-4 bg-white rounded flex flex-row space-x-4">
+  <div class="border p-4 bg-white rounded flex flex-row space-x-4">
     <% if @post.image_url.present? %>
       <div class="flex-shrink-0 max-w-xs">
         <%= image_tag @post.image_url, class: "rounded-lg shadow-md w-full h-auto" %>
@@ -17,8 +17,8 @@
     </div>
   </div>
   <div class="flex justify-between w-full mt-6 space-x-4">
-    <%= link_to "Xでシェアする", "https://twitter.com/intent/tweet?text=#{CGI.escape(@post.content)}", class: "bg-pink-400 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded text-center", target: "_blank" %>
-    <%= link_to 'みんなの短歌を見る', posts_path, class: "bg-sky-400 hover:bg-sky-600 text-white font-bold py-2 px-4 rounded text-center" %>
+    <%= link_to "Xでシェアする", "https://twitter.com/intent/tweet?text=#{CGI.escape(@post.content)}", class: "backdrop-blur-sm underline hover:bg-pink-600 text-white font-bold py-2 px-4 rounded text-center", target: "_blank" %>
+    <%= link_to 'みんなの短歌を見る', posts_path, class: "backdrop-blur-sm underline hover:bg-sky-600 text-white font-bold py-2 px-4 rounded text-center" %>
   </div>
 </div>
 
