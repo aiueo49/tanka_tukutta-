@@ -4,7 +4,7 @@
 <div class="container mx-auto py-12">
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
     <% @posts.each do |post| %>
-      <%= link_to post_path(post), class: "border p-4 bg-white bg-opacity-90 rounded flex flex-col items-center min-h-[32rem]" do %>
+      <%= link_to post_path(post), class: "border p-4 bg-white bg-opacity-90 rounded flex flex-col items-center min-h-[32rem] hover:bg-gray-300 transition-colors duration-200" do %>
         <% if post.image_url.present? %>
           <div class="flex-shrink-0 max-w-xs mb-4">
             <%= image_tag post.image_url, class: "rounded-lg shadow-md w-full h-auto" %>
