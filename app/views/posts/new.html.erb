@@ -1,5 +1,5 @@
 <div class="flex flex-col items-center justify-center flex-grow">
-  <div class="backdrop-blur-sm border p-6 shadow-md max-w-md w-full space-y-8">
+  <div class="rounded backdrop-blur-sm border p-6 shadow-md max-w-md w-full space-y-8">
     <div>
       <h1 class="font-bold text-4xl text-white text-center">短歌生成フォーム</h1>
     </div>
@@ -8,45 +8,42 @@
       <div class="rounded-md shadow-sm -space-y-px">
         <div>
           <%= f.label :title, class: "sr-only" %>
-          <%= f.text_field :title, class: "appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm", placeholder: "短歌にしたい文章を入力してください" %>
+          <%= f.text_field :title, class: "rounded appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm", placeholder: "短歌にしたい文章を入力してください" %>
         </div>
       </div>
       <div>
-        <%= f.submit "作成する", class: "group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-bold text-white bg-pink-500 hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+        <%= f.submit "作成する", class: "rounded group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-bold text-white bg-pink-500 hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
       </div>
     <% end %>
   </div>
 </div>
 
 <!-- モーダルウィンドウ -->
-<div id="myModal" class="modal">
-  <div class="modal-content">
-    <p>処理中です。しばらくお待ちください...</p>
+<div id="myModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 hidden">
+  <div class="bg-white p-6 rounded-lg shadow-md w-11/12 max-w-lg">
+    <p class="text-lg font-bold mb-4 text-center">短歌生成中につき、しばらくお待ちください...</p>
+    <div class="flex justify-center mb-4">
+      <div class="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-12 w-12"></div>
+    </div>
+    <p class="text-sm font-bold text-gray-900">短歌とは？</p>
+    <p class="text-sm text-gray-700">和歌のひとつの形式です。</p>
+    <p class="text-sm text-gray-700">5・7・5・7・7の5句31音を基準とします。</p>
   </div>
 </div>
 
 <style>
-  /* モーダルウィンドウのスタイル */
-  .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  .loader {
+    border-top-color: #3490dc;
+    animation: spinner 1.5s linear infinite;
   }
 
-  /* Modal Content/Box */
-  .modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
+  @keyframes spinner {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
   }
 </style>
 
@@ -59,6 +56,6 @@
 
   // When the user submits the form, open the modal 
   form.addEventListener('submit', (event) => {
-    modal.style.display = "block";
+    modal.classList.remove('hidden');
   });
 </script>
