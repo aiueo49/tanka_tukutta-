@@ -2,7 +2,9 @@ class PostsController < ApplicationController
   before_action :require_login, only: [:new, :select]
 
   def index
-    # @posts = Post.all
+    # サイドバーを非表示にする
+    @hide_sidebar = true
+    # Ransackを利用して検索機能を実装
     @q = Post.ransack(params[:q])
     @posts = @q.result(distinct: true).includes(:user).order("created_at desc")
   end
