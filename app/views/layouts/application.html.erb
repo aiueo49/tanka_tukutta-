@@ -12,6 +12,23 @@
     <script src="https://kit.fontawesome.com/2ad9886cff.js" crossorigin="anonymous"></script>
     <%= display_meta_tags(default_meta_tags) %>
 
+    <video autoplay muted loop class="fixed top-0 left-0 w-full h-full z-[-1] object-cover">
+      <source src="/videos/22451_1280x720 (1).mp4" type="video/mp4">
+    </video>
+
+    <script>
+      var video = document.querySelector('video');
+      var videoTime = localStorage.getItem('videoTime');
+
+      if (videoTime) {
+        video.currentTime = videoTime;
+      }
+
+      video.addEventListener('timeupdate', function() {
+        localStorage.setItem('videoTime', video.currentTime);
+      });
+    </script>
+
     <style>
       @keyframes fadeInOut {
         0% {
@@ -59,18 +76,16 @@
     </style>
   </head>
 
-  <body class="font-serif bg-pink-50 flex flex-col min-h-screen">
-    
-  <% if current_page?(root_path) %>
-    <div id="background-white"></div>
-    <div id="logo-container" class="absolute">
-      <%= image_tag "main_logo.png", id: "logo", class: "animate-fadeInOut" %>
-    </div>
-  <% end %>
-
-    <video autoplay muted loop class="fixed top-0 left-0 w-full h-full z-[-1] object-cover">
-      <source src="/videos/22451_1280x720 (1).mp4" type="video/mp4">
-    </video>
+  <body class="font-serif flex flex-col min-h-screen">
+  
+    <% if first_visit %>
+      <% if current_page?(root_path) %>
+        <div id="background-white"></div>
+        <div id="logo-container" class="absolute">
+          <%= image_tag "main_logo.png", id: "logo", class: "animate-fadeInOut" %>
+        </div>
+      <% end %>
+    <% end %>
 
     <div class="fixed inset-0 bg-black bg-opacity-30 z-[-1]"></div>
 
@@ -89,7 +104,7 @@
             <span></span>
             <span></span>
           </div>
-          <ul class="slide-menu">
+          <ul class="slide-menu <%= "bg-black opacity-60" if controller_name == 'posts' && action_name == 'index' || controller_name == 'mypages' && action_name == 'index' %>">
             <%= link_to new_post_path do %>
               <li>短歌をつくる</li>
             <% end %>
@@ -148,7 +163,6 @@
         top: 100%;
       }
       .slide-menu {
-        background: transparent;
         position: fixed;
         top: 65px;
         width: 15%;
