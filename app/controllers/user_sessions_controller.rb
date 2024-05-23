@@ -3,8 +3,6 @@ class UserSessionsController < ApplicationController
     @user = login(params[:email], params[:password])
 
     if @user
-      # こちらフラッシュメッセージが二つ出るのでやめる
-      # redirect_back fallback_location: root_path, notice: 'ログインに成功しました'
       redirect_back_or_to root_path, notice: 'ログインに成功しました'
     else
       flash.now[:alert] = 'ログインに失敗しました'
@@ -29,8 +27,6 @@ class UserSessionsController < ApplicationController
       password_confirmation: 'password'
     )
     auto_login(@guest_user)
-    # こちらフラッシュメッセージが二つ出るのでやめる
-    # redirect_back fallback_location: root_path, notice: 'ゲストユーザーとしてログインしました'
     redirect_back_or_to root_path, notice: 'ゲストユーザーとしてログインしました'
   end
 end
