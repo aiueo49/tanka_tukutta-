@@ -74,6 +74,19 @@
       <source src="/videos/22451_1280x720 (1).mp4" type="video/mp4">
     </video>
 
+    <script>
+      var video = document.querySelector('video');
+      var videoTime = localStorage.getItem('videoTime');
+
+      if (videoTime) {
+        video.currentTime = videoTime;
+      }
+
+      video.addEventListener('timeupdate', function() {
+        localStorage.setItem('videoTime', video.currentTime);
+      });
+    </script>
+
     <div class="fixed inset-0 bg-black bg-opacity-30 z-[-1]"></div>
 
     <header>
