@@ -61,14 +61,14 @@
 
   <body class="font-serif flex flex-col min-h-screen">
   
-  <% if first_visit %>
-    <% if current_page?(root_path) %>
-      <div id="background-white"></div>
-      <div id="logo-container" class="absolute">
-        <%= image_tag "main_logo.png", id: "logo", class: "animate-fadeInOut" %>
-      </div>
+    <% if first_visit %>
+      <% if current_page?(root_path) %>
+        <div id="background-white"></div>
+        <div id="logo-container" class="absolute">
+          <%= image_tag "main_logo.png", id: "logo", class: "animate-fadeInOut" %>
+        </div>
+      <% end %>
     <% end %>
-  <% end %>
 
     <video autoplay muted loop class="fixed top-0 left-0 w-full h-full z-[-1] object-cover">
       <source src="/videos/22451_1280x720 (1).mp4" type="video/mp4">
