@@ -104,7 +104,7 @@
             <span></span>
             <span></span>
           </div>
-          <ul class="slide-menu">
+          <ul class="slide-menu <%= "bg-black opacity-60" if controller_name == 'posts' && action_name == 'index' || controller_name == 'mypages' && action_name == 'index' %>">
             <%= link_to new_post_path do %>
               <li>短歌をつくる</li>
             <% end %>
@@ -163,7 +163,6 @@
         top: 100%;
       }
       .slide-menu {
-        background: transparent;
         position: fixed;
         top: 65px;
         width: 15%;
