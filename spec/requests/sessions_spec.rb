@@ -21,6 +21,8 @@ RSpec.describe 'Sessions', type: :request do
       delete logout_path
       # 成功した場合のみリダイレクトするので、リダイレクトされることを確認すればログアウトに成功したことがわかる
       expect(response).to have_http_status(:redirect)
+      follow_redirect!
+      expect(response.body).to include "ログアウトしました"
     end
   end
 end
