@@ -26,7 +26,8 @@ class OpenAi::ChatApi
     end
 
     payload = {
-      model: "gpt-3.5-turbo",
+      # model: "gpt-3.5-turbo",
+      model: "gpt-4o",
       max_tokens: 512,
       temperature: 0.9,
       messages: @histories,
