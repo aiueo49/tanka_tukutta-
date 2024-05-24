@@ -69,10 +69,10 @@ class PostsController < ApplicationController
     twitter: {
       card: "summary_large_image",
       site: "@",
-      # title: "短歌つくったー。",
-      title: "ユーザーが入力した文章をもとに、AIが短歌を生成するサービスです。",
-      # description: "ユーザーが入力した文章をもとに、AIが短歌を生成するサービスです。",
-      image: view_context.image_url('main_logo.png')
+      title: "短歌つくったー。",
+      description: "ユーザーが入力した文章をもとに、AIが短歌を生成するサービスです。",
+      image: url_for(@post.image_url)
+      # image: view_context.image_url('main_logo.png')
     }
 
     # TwitterのシェアURLを生成
