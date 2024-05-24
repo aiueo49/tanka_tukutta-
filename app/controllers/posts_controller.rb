@@ -59,8 +59,8 @@ class PostsController < ApplicationController
     
     # OGP設定
     set_meta_tags og: {
-      title: "ユーザーが入力した文章をもとに、AIが短歌を生成するサービスです。",
-      # description: "もとの文章: #{@post.title}",
+      title: "短歌つくったー。",
+      description: "ユーザーが入力した文章をもとに、AIが短歌を生成するサービスです。",
       url: request.original_url,
       # 短歌の画像を動的に表示したかったがうまくいかなかったため、固定の画像を表示
       # image: url_for(@post.image_url)
@@ -69,8 +69,9 @@ class PostsController < ApplicationController
     twitter: {
       card: "summary_large_image",
       site: "@",
+      # title: "短歌つくったー。",
       title: "ユーザーが入力した文章をもとに、AIが短歌を生成するサービスです。",
-      # description: "もとの文章: #{@post.title}",
+      # description: "ユーザーが入力した文章をもとに、AIが短歌を生成するサービスです。",
       image: view_context.image_url('main_logo.png')
     }
 
