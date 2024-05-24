@@ -32,6 +32,9 @@ module ApplicationHelper
       twitter: {
         card: 'summary_large_image',
         site: '@',
+        site_name: '短歌つくったー。',
+        title: '短歌生成サービス',
+        description: 'ユーザーが入力した文章をもとに、AIが短歌を生成するサービスです。',
         image: image_url('main_logo.png')
       }
     }
