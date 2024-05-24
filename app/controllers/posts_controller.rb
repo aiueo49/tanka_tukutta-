@@ -56,6 +56,26 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    
+    # OGP設定
+    set_meta_tags og: {
+      title: "ユーザーが入力した文章をもとに、AIが短歌を生成するサービスです。",
+      # description: "もとの文章: #{@post.title}",
+      url: request.original_url,
+      # 短歌の画像を動的に表示したかったがうまくいかなかったため、固定の画像を表示
+      # image: url_for(@post.image_url)
+      image: view_context.image_url('main_logo.png')
+    },
+    twitter: {
+      card: "summary_large_image",
+      site: "@",
+      title: "ユーザーが入力した文章をもとに、AIが短歌を生成するサービスです。",
+      # description: "もとの文章: #{@post.title}",
+      image: view_context.image_url('main_logo.png')
+    }
+
+    # TwitterのシェアURLを生成
+    @twitter_share_url = "https://twitter.com/intent/tweet?text=#{ERB::Util.url_encode("ここで一首。\n◤￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣\n #{@post.content}\n＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿◢\n#{@post.user.name}  心の一首。")}&url=#{request.original_url}"
   end
 
   def destroy
