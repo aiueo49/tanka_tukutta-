@@ -50,7 +50,6 @@ class PostsController < ApplicationController
       session.delete(:title)
       redirect_to @post, notice: '短歌を投稿しました。'
     else
-      p @post.errors.full_messages
       render 'new'
     end
   end

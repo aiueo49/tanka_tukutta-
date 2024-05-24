@@ -144,4 +144,19 @@ RSpec.describe 'Post', type: :request do
       expect(Post.last.image_url).to eq("https://s3.example.com/uploads/generated_image.png")
     end
   end
+
+  # user.idが欲しかったので、手動でUserのIDをセットする試み
+  context "DELETE /posts/:id" do
+    it "短歌の削除に成功すること" do
+      @user = User.create!(name: "test", email: "testman@example.com", password: "password", password_confirmation: "password")
+      @post = Post.create!(title: "ちはやぶる 神代もきかず 竜田川 からくれなゐに 水くくるとは", content: "ちはやぶる 神代もきかず 竜田川 からくれなゐに 水くくるとは", user_id: @user.id)
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
+      delete post_path(@post)
+      expect(Post.find_by(id: @post.id)).to be_nil
+      expect(response).to have_http_status(:redirect)
+      follow_redirect!
+      expect(response.body).to include("短歌を削除しました。")
+      @user.destroy # テストデータの削除
+    end
+  end
 end
