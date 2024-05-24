@@ -17,5 +17,13 @@ RSpec.describe 'Post', type: :request do
       expect(response.body).to include "短歌生成フォーム"
     end
   end
+
+  describe "POST /posts/select" do
+    it "短歌が生成されること" do
+      post select_posts_path
+      expect(response).to have_http_status(200)
+      expect(response.body).to include "短歌選択画面"
+    end
+  end
 end
 
