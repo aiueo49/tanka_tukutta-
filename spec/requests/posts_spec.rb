@@ -89,4 +89,59 @@ RSpec.describe 'Post', type: :request do
       expect(response.body).to include("甘美なる 願いはケーキに 満たされぬ 舌を待ちわび 甘美の味を")
     end
   end
+
+  describe "POST /posts/create" do
+    it "短歌に合わせた画像が生成されること" do
+      user_select = "甘美なる 願いはケーキに 満たされぬ 舌を待ちわび 甘美の味を"
+
+      # セッションに保存する内容を設定
+      allow_any_instance_of(PostsController).to receive(:session).and_return({ title: "ケーキが食べたいなあ", tankas: [user_select] })
+
+      # スタブリクエストの設定
+      stub_request(:post, "https://api.openai.com/v1/images/generations")
+        .with(
+          body: {
+            prompt: "ケーキが食べたいなあ",
+            model: "dall-e-3",
+            n: 1,
+            size: "1024x1024"
+          }.to_json,
+          headers: {
+            'Authorization' => "Bearer #{ENV["OPEN_AI_API_KEY"]}",
+            'Content-Type' => 'application/json'
+          }
+        )
+        .to_return(
+          status: 200,
+          body: {
+            data: [
+              {
+                url: "https://example.com/image.png"
+              }
+            ]
+          }.to_json,
+          headers: {}
+        )
+
+      # S3アップロードのスタブ化
+      allow_any_instance_of(OpenAi::ImageApi).to receive(:upload_image_to_s3).and_return("https://s3.example.com/uploads/generated_image.png")
+
+      # Post作成時に手動でUserのIDをセット
+      allow_any_instance_of(Post).to receive(:user).and_return(@user)
+
+      post posts_path, params: { post: { title: "ケーキが食べたいなあ", content: user_select } }
+
+      # 作成されたPostオブジェクトを取得
+      created_post = Post.last
+
+      # Postオブジェクトが作成されているかチェック
+      expect(created_post).not_to be_nil
+
+      expect(response).to have_http_status(:redirect)
+      follow_redirect!
+
+      expect(response.body).to include("短歌を投稿しました。")
+      expect(Post.last.image_url).to eq("https://s3.example.com/uploads/generated_image.png")
+    end
+  end
 end
