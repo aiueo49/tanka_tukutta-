@@ -62,5 +62,16 @@
 [ver.2：本リリースまでの構想](https://www.figma.com/design/xtbiWIPwm1vsY5eoMeGqMN/%E7%9F%AD%E6%AD%8C%E3%81%A4%E3%81%8F%E3%81%A3%E3%81%9F%E3%83%BC%E3%80%82?t=olQRBftEDzZliSm4-0)
 
 ***
+
 ### ■ ER図
+<details><summary>企画初期</summary>
+
 [![Image from Gyazo](https://i.gyazo.com/679d435a69d02238ea4c77a936ba0d7d.png)](https://gyazo.com/679d435a69d02238ea4c77a936ba0d7d)
+</details>
+
+***
+
+### ■ 開発者よりご挨拶
+当サービスのご利用、誠に感謝申し上げます。
+
+当サービスへのご意見、不具合等ございましたら、お手数ですが、[開発者(X)](https://x.com/kitaji_i)またはissueにてご連絡くださいますようお願い申し上げます。
