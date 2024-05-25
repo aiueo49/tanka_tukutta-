@@ -16,9 +16,6 @@ class UserSessionsController < ApplicationController
     redirect_to root_path, status: :see_other, notice: 'ログアウトしました'
   end
 
-  def first_login_page
-  end
-
   def guest_login
     # 短歌作成者を表示するため使う可能性があるのでインスタンス変数に代入しておく
     @guest_user = User.create(
