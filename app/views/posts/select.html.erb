@@ -30,6 +30,37 @@
     text-orientation: upright;
     white-space: nowrap;
   }
+
+  .option:hover .vertical-text {
+    color: black;
+  }
+
+  .loader {
+    border-top-color: #3490dc;
+    animation: spinner 1.5s linear infinite;
+  }
+
+  @keyframes spinner {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  .option:hover,
+  .selected:hover {
+    background-color: white;
+  }
+
+  .selected {
+    background-color: white;
+  }
+
+  .selected .vertical-text {
+    color: black;
+  }
 </style>
 
 <!-- モーダルウィンドウ -->
@@ -45,37 +76,6 @@
     <p class="text-sm text-gray-700">現在も日本文学の重要な一部として続いています。</p>
   </div>
 </div>
-
-<style>
-  .loader {
-    border-top-color: #3490dc;
-    animation: spinner 1.5s linear infinite;
-  }
-
-  @keyframes spinner {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-</style>
-
-<style>
-  .option:hover,
-  .selected:hover {
-    background-color: white;
-  }
-
-  .selected {
-    background-color: white;
-  }
-
-  .selected .vertical-text {
-    color: black;
-  }
-</style>
 
 <script>
   document.addEventListener('DOMContentLoaded', (event) => {
