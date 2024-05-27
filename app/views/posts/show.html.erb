@@ -2,7 +2,11 @@
   <div class="border p-4 bg-white bg-opacity-90 rounded flex flex-row space-x-4 items-center">
     <% if @post.image_url.present? %>
       <div class="flex-shrink-0 max-w-xs">
-        <%= image_tag @post.image_url, class: "rounded-lg shadow-md w-full h-auto" %>
+        <%= image_tag @post.image_url, class: "rounded-lg shadow-md w-full h-auto", onerror: "this.onerror=null;this.src='#{asset_path('sample.webp')}';" %>
+      </div>
+    <% else %>
+      <div class="flex-shrink-0 max-w-xs">
+        <%= image_tag "sample.webp", class: "rounded-lg shadow-md w-full h-auto" %>
       </div>
     <% end %>
     <div class="flex flex-col justify-center items-center space-y-4">
@@ -11,9 +15,15 @@
           <p><%= line %></p>
         <% end %>
       </div>
+    <% if @post.user_id.present? %>
       <div class="text-lg text-center vertical-text">
         <p><%= @post.user.name %></p>
       </div>
+    <% else %>
+      <div class="text-lg text-center vertical-text">
+        <p>詠み人知らず</p>
+      </div>
+    <% end %>
     </div>
   </div>
   <div>

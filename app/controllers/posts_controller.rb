@@ -76,7 +76,12 @@ class PostsController < ApplicationController
     }
 
     # TwitterのシェアURLを生成
-    @twitter_share_url = "https://twitter.com/intent/tweet?text=#{ERB::Util.url_encode("ここで一首。\n◤￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣\n #{@post.content}\n＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿◢\n#{@post.user.name}  心の一首。")}&url=#{request.original_url}"
+    if @post.user_id.present?
+      @twitter_share_url = "https://twitter.com/intent/tweet?text=#{ERB::Util.url_encode("ここで一首。\n◤￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣\n #{@post.content}\n＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿◢\n#{@post.user.name}  心の一首。")}&url=#{request.original_url}"
+    else
+      # 初期データに名前がないため、名前がない場合は「詠み人知らず」と表示
+      @twitter_share_url = "https://twitter.com/intent/tweet?text=#{ERB::Util.url_encode("ここで一首。\n◤￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣\n #{@post.content}\n＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿◢\n詠み人知らず  心の一首。")}&url=#{request.original_url}"
+    end
   end
 
   def destroy

@@ -7,7 +7,11 @@
       <%= link_to post_path(post), class: "border p-4 bg-white bg-opacity-90 rounded flex flex-col items-center min-h-[32rem] hover:bg-gray-300 transition-colors duration-200" do %>
         <% if post.image_url.present? %>
           <div class="flex-shrink-0 max-w-xs mb-4">
-            <%= image_tag post.image_url, class: "rounded-lg shadow-md w-full h-auto" %>
+            <%= image_tag post.image_url, class: "rounded-lg shadow-md w-full h-auto", onerror: "this.onerror=null;this.src='#{asset_path('sample.webp')}';" %>
+          </div>
+        <% else %>
+          <div class="flex-shrink-0 max-w-xs mb-4">
+            <%= image_tag "sample.webp", class: "rounded-lg shadow-md w-full h-auto" %>
           </div>
         <% end %>
         <div class="flex flex-col justify-between items-center space-y-4 flex-grow w-full">
@@ -19,6 +23,10 @@
           <% if post.user.present? %>
             <div class="text-lg vertical-text self-end mr-44">
               <p><%= post.user.name %></p>
+            </div>
+          <% else %>
+            <div class="text-lg vertical-text self-end mr-44">
+              <p>詠み人知らず</p>
             </div>
           <% end %>
         </div>
