@@ -83,3 +83,5 @@ gem "ransack", "~> 4.1"
 gem "meta-tags", "~> 2.21"
 
 gem "aws-sdk-s3", "~> 1.151"
+
+gem "mini_magick", "~> 4.12"
