@@ -26,7 +26,7 @@ module ApplicationHelper
         description: 'ユーザーが入力した文章をもとに、AIが短歌を生成するサービスです。',
         type: 'website',
         url: request.original_url,
-        image: image_url('ogp.png'),
+        image: image_url('ogp.jpg'),
         locale: 'ja_JP',
       },
       twitter: {
@@ -35,7 +35,7 @@ module ApplicationHelper
         site_name: '短歌つくったー。',
         title: '短歌生成サービス',
         description: 'ユーザーが入力した文章をもとに、AIが短歌を生成するサービスです。',
-        image: image_url('ogp.png')
+        image: image_url('ogp.jpg')
       }
     }
   end
