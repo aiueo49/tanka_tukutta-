@@ -219,13 +219,15 @@
         const logoContainer = document.getElementById('logo-container');
         const backgroundWhite = document.getElementById('background-white');
         
-        logoContainer.addEventListener('animationend', function() {
-          logoContainer.style.display = 'none';
-          backgroundWhite.classList.add('animate-fadeOut');
-          backgroundWhite.addEventListener('animationend', function() {
-            backgroundWhite.style.display = 'none';
+        if (logoContainer && backgroundWhite) {
+          logoContainer.addEventListener('animationend', function() {
+            logoContainer.style.display = 'none';
+            backgroundWhite.classList.add('animate-fadeOut');
+            backgroundWhite.addEventListener('animationend', function() {
+              backgroundWhite.style.display = 'none';
+            });
           });
-        });
+        }
       });
     </script>
 
