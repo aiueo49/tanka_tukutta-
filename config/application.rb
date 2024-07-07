@@ -23,5 +23,8 @@ module TankaTukitta
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    # カスタムエラーページ用のルートを追加
+    config.exceptions_app = self.routes
   end
 end
