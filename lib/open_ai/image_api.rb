@@ -17,6 +17,10 @@ class OpenAi::ImageApi
       faraday.request :json
       faraday.response :json, content_type: /\bjson$/
       faraday.adapter Faraday.default_adapter
+      # 接続タイムアウトを設定 
+      faraday.options.open_timeout = 15
+      # 読み込みタイムアウトを設定
+      faraday.options.timeout = 60
     end
 
     payload = {
