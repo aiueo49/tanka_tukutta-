@@ -25,4 +25,8 @@ Rails.application.routes.draw do
   get 'privacy', to: 'pages#privacy'
   get 'contact', to: 'pages#contact'
   get '/search', to: 'posts#search'
+
+  # カスタムエラーページ
+  match '/404', to: 'errors#not_found', via: :all
+  match '/500', to: 'errors#internal_server_error', via: :all
 end
