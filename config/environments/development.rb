@@ -76,5 +76,5 @@ Rails.application.configure do
 
   # エラーハンドリングをローカル環境でテストしたいので追加、終わったらコメントアウトする
   config.consider_all_requests_local = false
-  config.action_dispatch.show_exceptions = true
+  config.action_dispatch.show_exceptions = :all
 end

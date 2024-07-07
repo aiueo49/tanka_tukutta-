@@ -1,6 +1,11 @@
 class ApplicationController < ActionController::Base
   helper_method :first_visit
 
+  # 500エラーテスト用
+  def raise_500
+    raise "Internal 500 Error"
+  end
+
   private
 
   def not_authenticated
@@ -16,3 +21,4 @@ class ApplicationController < ActionController::Base
     end
   end
 end
+
