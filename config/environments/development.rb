@@ -75,6 +75,6 @@ Rails.application.configure do
   config.action_controller.raise_on_missing_callback_actions = true
 
   # エラーハンドリングをローカル環境でテストしたいので追加、終わったらコメントアウトする
-  config.consider_all_requests_local = false
-  config.action_dispatch.show_exceptions = :all
+  # config.consider_all_requests_local = false
+  # config.action_dispatch.show_exceptions = :all
 end
