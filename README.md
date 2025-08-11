@@ -1,6 +1,7 @@
 # [短歌つくったー。](https://www.tankatukutta.com)
 
-**[短歌つくったー。](https://www.tankatukutta.com)** は、AIを使って自動的に短歌を生成するWEBアプリです。
+**[短歌つくったー。](https://www.tankatukutta.com)** は、AIを使って自動的に短歌を生成するWEBアプリです。https://tanka-tukutta.onrender.com/
+
 
 ユーザーが入力した言葉をもとに、美しい短歌を作り出します。
 
